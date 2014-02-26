@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 4c548ecdf20cec045a25dcc887f6cebd
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Upper Railing
+    100004: Door Jamb Roof
+    100006: Entry Door Jamb
+    100008: Basement Step
+    100010: Basement Door
+    100012: DoorJam01
+    100014: Stairs Interior
+    100016: StairRamp
+    100018: Entry Stair
+    100020: Entry Door Left
+    100022: Building Group
+    100118: Solid Door
+    100120: BarrierJamb002
+    100122: Barricade Mid
+    100124: Barrier 2
+    100126: BarrierJamb01
+    100128: Barricade Front
+    100130: Barrier 1
+    100134: Bridge Plank
+    100136: MainBuilding Outer
+    100138: Upper Railing Rope
+    100140: Lower Railing Rope
+    100142: Basement Step001
+    100144: Door Jamb Interior
+    100146: MainBuilding Basement
+    100148: MainBuilding Interior
+    100150: Basement Stair01
+    100152: Basement Stair02
+    100154: Entry Door Right
+    100156: Sliding Door Left
+    100158: Sliding Door Right
+    400000: //RootNode
+    400002: Upper Railing
+    400004: Door Jamb Roof
+    400006: Entry Door Jamb
+    400008: Basement Step
+    400010: Basement Door
+    400012: DoorJam01
+    400014: Stairs Interior
+    400016: StairRamp
+    400018: Entry Stair
+    400020: Entry Door Left
+    400022: Building Group
+    400118: Solid Door
+    400120: BarrierJamb002
+    400122: Barricade Mid
+    400124: Barrier 2
+    400126: BarrierJamb01
+    400128: Barricade Front
+    400130: Barrier 1
+    400134: Bridge Plank
+    400136: MainBuilding Outer
+    400138: Upper Railing Rope
+    400140: Lower Railing Rope
+    400142: Basement Step001
+    400144: Door Jamb Interior
+    400146: MainBuilding Basement
+    400148: MainBuilding Interior
+    400150: Basement Stair01
+    400152: Basement Stair02
+    400154: Entry Door Right
+    400156: Sliding Door Left
+    400158: Sliding Door Right
+    2300000: Upper Railing
+    2300002: Door Jamb Roof
+    2300004: Entry Door Jamb
+    2300006: Basement Step
+    2300008: Basement Door
+    2300010: DoorJam01
+    2300012: Stairs Interior
+    2300014: StairRamp
+    2300016: Entry Stair
+    2300018: Entry Door Left
+    2300020: Solid Door
+    2300022: BarrierJamb002
+    2300024: Barricade Mid
+    2300026: BarrierJamb01
+    2300028: Barricade Front
+    2300030: Bridge Plank
+    2300032: MainBuilding Outer
+    2300034: Upper Railing Rope
+    2300036: Lower Railing Rope
+    2300038: Basement Step001
+    2300040: Door Jamb Interior
+    2300042: MainBuilding Basement
+    2300044: MainBuilding Interior
+    2300046: Basement Stair01
+    2300048: Basement Stair02
+    2300050: Entry Door Right
+    2300052: Sliding Door Left
+    2300054: Sliding Door Right
+    3300000: Upper Railing
+    3300002: Door Jamb Roof
+    3300004: Entry Door Jamb
+    3300006: Basement Step
+    3300008: Basement Door
+    3300010: DoorJam01
+    3300012: Stairs Interior
+    3300014: StairRamp
+    3300016: Entry Stair
+    3300018: Entry Door Left
+    3300020: Solid Door
+    3300022: BarrierJamb002
+    3300024: Barricade Mid
+    3300026: BarrierJamb01
+    3300028: Barricade Front
+    3300030: Bridge Plank
+    3300032: MainBuilding Outer
+    3300034: Upper Railing Rope
+    3300036: Lower Railing Rope
+    3300038: Basement Step001
+    3300040: Door Jamb Interior
+    3300042: MainBuilding Basement
+    3300044: MainBuilding Interior
+    3300046: Basement Stair01
+    3300048: Basement Stair02
+    3300050: Entry Door Right
+    3300052: Sliding Door Left
+    3300054: Sliding Door Right
+    4300000: Bridge Plank
+    4300002: Sliding Door Right
+    4300004: Barricade Front
+    4300006: BarrierJamb01
+    4300008: Sliding Door Left
+    4300010: Barricade Mid
+    4300012: BarrierJamb002
+    4300014: Solid Door
+    4300016: Entry Door Right
+    4300018: Entry Door Left
+    4300020: Entry Stair
+    4300022: StairRamp
+    4300024: Stairs Interior
+    4300026: Basement Stair02
+    4300028: Basement Stair01
+    4300030: MainBuilding Interior
+    4300032: MainBuilding Basement
+    4300034: DoorJam01
+    4300036: Basement Door
+    4300038: Basement Step
+    4300040: Entry Door Jamb
+    4300042: Door Jamb Interior
+    4300044: Door Jamb Roof
+    4300046: Basement Step001
+    4300048: Upper Railing
+    4300050: Lower Railing Rope
+    4300052: Upper Railing Rope
+    4300054: MainBuilding Outer
+    6400000: Barricade Front
+    6400002: BarrierJamb01
+    6400004: Barricade Mid
+    6400006: Entry Door Left
+    6400008: Entry Stair
+    6400010: StairRamp
+    6400012: Stairs Interior
+    6400014: Upper Railing
+    6400016: BarrierJamb002
+    6400018: Solid Door
+    6400020: Bridge Plank
+    6400022: Basement Door
+    6400024: Basement Step
+    6400026: Door Jamb Roof
+    6400028: DoorJam01
+    6400030: Entry Door Jamb
+    6400032: Lower Railing Rope
+    6400034: Sliding Door Right
+    6400036: Basement Stair02
+    6400038: MainBuilding Outer
+    6400040: Basement Stair01
+    6400042: MainBuilding Interior
+    6400044: Door Jamb Interior
+    6400046: MainBuilding Basement
+    6400048: Entry Door Right
+    6400050: Sliding Door Left
+    6400052: Upper Railing Rope
+    6400054: Basement Step001
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
