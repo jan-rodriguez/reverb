@@ -11,6 +11,20 @@ public class NetworkManager : MonoBehaviour {
 	public void OnGUI()
 	{
 
+		if(Network.isServer)
+		{
+			GUILayout.Label("Running as a server.");
+		}else if(Network.isClient)
+		{
+			GUILayout.Label("Running as a client");
+
+			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
+			{
+				SpawnPlayer();
+			}
+		}
+
+
 		//Don't display buttons if we are connected
 		if (Network.isClient || Network.isServer) 
 		{
@@ -37,25 +51,12 @@ public class NetworkManager : MonoBehaviour {
 				//Create buttons for each server
 				if(GUI.Button( new Rect(Screen.width/2, 65f + (30f * i), 300f, 30f), hostData[i].gameName ) )
 				{
+					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
 				}
 				      
 			}
-		}
-	}
-
-	void OnServerInitialized()
-	{
-		Debug.Log ("Server has been initialized");
-
-	}
-
-	void OnMasterServerEvent(MasterServerEvent msEvent)
-	{
-		if (msEvent == MasterServerEvent.RegistrationSucceeded)
-		{
-			Debug.Log ("Registration Successful");
 		}
 	}
 
@@ -86,4 +87,56 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 	}
+
+	private void SpawnPlayer()
+	{
+		Debug.Log ("Spawning player");
+
+		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
+		if(playerPrefab != null)
+		{
+			Network.Instantiate (playerPrefab, new Vector3 (145.5427f, 373.8164f, 225.1191f), Quaternion.identity, 0);
+		}else{
+			Debug.Log("error getting prefab");
+		}
+	}
+
+	//----------------------------Call Backs from client and server---------------------------
+
+	void OnServerInitialized()
+	{
+		Debug.Log ("Server has been initialized");
+		SpawnPlayer ();
+	}
+
+	void OnMasterServerEvent(MasterServerEvent msEvent)
+	{
+		if (msEvent == MasterServerEvent.RegistrationSucceeded)
+		{
+			Debug.Log ("Registration Successful");
+		}
+	}
+
+	//Clean up player's stuff
+	void OnPlayerDisconnect(NetworkPlayer player)
+	{
+		Debug.Log ("Player disconnected from: " + player.ipAddress + ":" + player.port);
+		Network.RemoveRPCs (player);
+		Network.DestroyPlayerObjects (player);
+	}
+
+	void OnApplicationQuit()
+	{
+		if(Network.isServer)
+		{
+			Network.Disconnect (200);
+			MasterServer.UnregisterHost();
+		}
+
+		if(Network.isClient)
+		{
+			Network.Disconnect(200);
+		}
+	}
+
 }

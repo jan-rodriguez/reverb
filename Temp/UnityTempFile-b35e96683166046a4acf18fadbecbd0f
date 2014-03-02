@@ -5,7 +5,7 @@
 -nowarn:BCW0016
 -nowarn:BCW0003
 -method:Main
--out:Temp/Assembly-UnityScript-firstpass.dll
+-out:Temp/Assembly-UnityScript.dll
 -x-type-inference-rule-attribute:UnityEngineInternal.TypeInferenceRuleAttribute
 -debug
 -define:UNITY_STANDALONE_OSX
@@ -38,8 +38,8 @@
 -define:UNITY_4_3_4
 -define:UNITY_4_3
 -r:'/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandalonePlayer/Managed/UnityEngine.dll'
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/CharacterMotor.js'
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/FPSInputController.js'
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/PlatformInputController.js'
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/ThirdPersonCamera.js'
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/ThirdPersonController.js'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/CharacterMotor.js'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/FPSInputController.js'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/PlatformInputController.js'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/ThirdPersonCamera.js'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/ThirdPersonController.js'

@@ -1,7 +1,7 @@
 -debug
 -target:library
 -nowarn:0169
--out:'Temp/Assembly-CSharp-firstpass.dll'
+-out:'Temp/Assembly-CSharp.dll'
 -r:'/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandalonePlayer/Managed/UnityEngine.dll'
 -define:UNITY_STANDALONE_OSX
 -define:ENABLE_MICROPHONE
@@ -32,6 +32,7 @@
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
 -define:UNITY_4_3_4
 -define:UNITY_4_3
-'Assets/Standard Assets/Character Controllers/Sources/Scripts/MouseLook.cs'
+'Assets/Scripts/Networking/NetworkManager.cs'
+'Assets/StandardAssets/CharacterControllers/Sources/Scripts/MouseLook.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
