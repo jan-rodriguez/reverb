@@ -70,9 +70,9 @@ public class MouseLook : MonoBehaviour {
 
 	void Awake() 
 	{
-		if(networkView.isMine)
+		if(!networkView.isMine)
 		{
-			camera.enabled = true;
+			this.camera.enabled = false;
 		}
 	}
 
