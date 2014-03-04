@@ -67,4 +67,13 @@ public class MouseLook : MonoBehaviour {
 			this.enabled = false;
 		}
 	}
+
+	void Awake() 
+	{
+		if(networkView.isMine)
+		{
+			camera.enabled = true;
+		}
+	}
+
 }
