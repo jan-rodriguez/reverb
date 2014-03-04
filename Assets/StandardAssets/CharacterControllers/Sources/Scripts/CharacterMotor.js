@@ -332,6 +332,9 @@ function FixedUpdate () {
 }
 
 function Update () {
+	if(!networkView.isMine) {
+		return;
+	}
 	if (!useFixedUpdate)
 		UpdateFunction();
 }
