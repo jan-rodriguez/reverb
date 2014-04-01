@@ -14,9 +14,11 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Start() {
 		audio.clip = Microphone.Start(null, true, 10, 44100);
+		audio.loop = true;
 
-//		while (!(Microphone.GetPosition(AudioInputDevice) > 0)){} // Wait until the recording has started
+		while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)){} // Wait until the recording has started
 		audio.Play(); // Play the audio source!
+
 	}
 	
 	private float GetAveragedVolume()
@@ -33,6 +35,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Update(){
 		loudness = GetAveragedVolume() * sensitivity;
+		Debug.Log (loudness);
 	}
 	
 }
