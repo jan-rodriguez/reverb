@@ -57,6 +57,7 @@ public class NetworkManager : MonoBehaviour {
 					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
+					
 				}
 				      
 			}
@@ -132,6 +133,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnApplicationQuit()
 	{
+		//Have the sever disconnect and remove it from the lists of hosts
 		if(Network.isServer)
 		{
 			Network.Disconnect (200);
