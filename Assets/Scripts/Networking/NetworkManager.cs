@@ -8,9 +8,11 @@ public class NetworkManager : MonoBehaviour {
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
 
+	//Display the overlay that the user will see when connecting/creating a server
 	public void OnGUI()
 	{
 
+		//Test display. Just show what type of connection you have
 		if(Network.isServer)
 		{
 			GUILayout.Label("Running as a server.");
@@ -18,6 +20,7 @@ public class NetworkManager : MonoBehaviour {
 		{
 			GUILayout.Label("Running as a client");
 
+			//Add button for clients to start server
 			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
 			{
 				SpawnPlayer();
@@ -54,6 +57,7 @@ public class NetworkManager : MonoBehaviour {
 					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
+					
 				}
 				      
 			}
@@ -67,6 +71,7 @@ public class NetworkManager : MonoBehaviour {
 		MasterServer.RegisterHost(registeredGameName, "Reverb Server", "Just testing");
 	}
 
+	//Get list of hosts currently running our game
 	public IEnumerator RefreshHostList()
 	{
 		Debug.Log ("Refreshing...");
@@ -88,6 +93,7 @@ public class NetworkManager : MonoBehaviour {
 
 	}
 
+	//Spawn a player on top of the building
 	private void SpawnPlayer()
 	{
 		Debug.Log ("Spawning player");
@@ -127,6 +133,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnApplicationQuit()
 	{
+		//Have the sever disconnect and remove it from the lists of hosts
 		if(Network.isServer)
 		{
 			Network.Disconnect (200);

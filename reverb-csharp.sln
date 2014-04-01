@@ -17,9 +17,12 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-				GlobalSection(MonoDevelopProperties) = preSolution
+						GlobalSection(MonoDevelopProperties) = preSolution
 =======
 					GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> jr_networking
+=======
+											GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> jr_networking
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0

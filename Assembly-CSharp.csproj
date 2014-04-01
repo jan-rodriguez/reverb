@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Audio\MicrophoneInput.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkManager.cs" />
      <Compile Include="Assets\StandardAssets\CharacterControllers\Sources\Scripts\MouseLook.cs" />
   </ItemGroup>

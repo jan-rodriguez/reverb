@@ -32,6 +32,10 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
+		//Don't update if the character isn't yours
+		if (!networkView.isMine) {
+			return;
+		}
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
@@ -59,5 +63,19 @@ public class MouseLook : MonoBehaviour {
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
+		if (!networkView.isMine) {
+			this.enabled = false;
+		}
 	}
+
+	void Awake() 
+	{
+		if(!networkView.isMine)
+		{
+			if(this.camera != null) {
+				this.camera.enabled = false;
+			}
+		}
+	}
+
 }
