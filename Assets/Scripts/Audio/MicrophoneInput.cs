@@ -35,7 +35,8 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Update(){
 		loudness = GetAveragedVolume() * sensitivity;
-		Debug.Log (loudness);
+		this.GetComponent<Light> ().intensity = loudness;
+//		Debug.Log (loudness);
 	}
 	
 }
