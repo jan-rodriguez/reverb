@@ -13,11 +13,14 @@ public class MicrophoneInput : MonoBehaviour {
 	public float loudness = 0;
 
 	public void Start() {
-		audio.clip = Microphone.Start(null, true, 10, 44100);
-		audio.loop = true;
+		if (networkView.isMine) {
+			audio.clip = Microphone.Start (null, true, 10, 44100);
+			audio.loop = true;
 
-		while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)){} // Wait until the recording has started
-		audio.Play(); // Play the audio source!
+			while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
+			} // Wait until the recording has started
+			audio.Play (); // Play the audio source!
+		}
 
 	}
 	
@@ -34,8 +37,12 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 
 	public void Update(){
-		loudness = GetAveragedVolume() * sensitivity;
-		this.GetComponent<Light> ().intensity = loudness;
+		if (networkView.isMine) {
+			loudness = GetAveragedVolume () * sensitivity;
+			this.GetComponent<Light> ().intensity = loudness;
+		} else {
+			return;
+		}
 //		Debug.Log (loudness);
 	}
 	
