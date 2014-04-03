@@ -8,7 +8,7 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float sensitivity = 10;
+	private const float sensitivity = 100;
 	private float loudness = 0;
 	
 	public void Start() {
@@ -88,6 +88,7 @@ public class MicrophoneInput : MonoBehaviour {
 		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
 
 			if(playerCam != this){
+				Debug.Log("Updating other player camera");
 
 				playerCam.GetComponent<Light>().intensity = sensitivity * GetAverage(sound);
 
