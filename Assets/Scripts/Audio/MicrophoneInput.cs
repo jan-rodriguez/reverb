@@ -17,6 +17,8 @@ public class MicrophoneInput : MonoBehaviour {
 			audio.clip = Microphone.Start (null, true, 10, 44100);
 			audio.loop = true;
 
+			gameObject.AddComponent<AudioListener> ();
+
 			while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
 			} // Wait until the recording has started
 			audio.Play (); // Play the audio source!
