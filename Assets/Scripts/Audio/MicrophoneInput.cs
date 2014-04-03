@@ -54,7 +54,7 @@ public class MicrophoneInput : MonoBehaviour {
 	public void PlaySound() {
 		if(networkView.isMine) {
 			float[] data = new float[256];
-			audio.GetOutputData(data,0);
+			audio.GetOutputData(data,1);
 
 			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
 		}
