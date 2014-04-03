@@ -9,8 +9,8 @@ using System.Collections;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	public float sensitivity = 100;
-	public float loudness = 0;
+	private const float sensitivity = 10;
+	private float loudness = 0;
 
 	public void Start() {
 		if (networkView.isMine) {
