@@ -10,9 +10,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	private const float sensitivity = 10;
 	private float loudness = 0;
-
-	private bool playingSound = false;
-
+	
 	public void Start() {
 		if (networkView.isMine) {
 			audio.clip = Microphone.Start (null, true, 10, 44100);
@@ -23,7 +21,8 @@ public class MicrophoneInput : MonoBehaviour {
 			while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
 			} // Wait until the recording has started
 
-//			audio.Play (); // Play the audio source!
+			audio.Play (); // Play the audio source!
+			audio.mute = true;
 		}
 
 	}
@@ -33,6 +32,8 @@ public class MicrophoneInput : MonoBehaviour {
 		float[] data = new float[256];
 		float a = 0;
 		audio.GetOutputData(data,0);
+
+
 		foreach(float s in data)
 		{
 			a += Mathf.Abs(s);
@@ -44,7 +45,6 @@ public class MicrophoneInput : MonoBehaviour {
 		if (networkView.isMine) {
 			loudness = GetAveragedVolume () * sensitivity;
 			this.GetComponent<Light> ().intensity = loudness;
-		} else {
 			PlaySound ();
 		}
 //		Debug.Log (loudness);
@@ -55,7 +55,6 @@ public class MicrophoneInput : MonoBehaviour {
 	public void PlaySound() {
 		if(networkView.isMine) {
 			float[] data = new float[256];
-			float a = 0;
 			audio.GetOutputData(data,0);
 
 			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
@@ -63,15 +62,26 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
+	[RPC]
 	private void PlayNetworkedSound(byte[] soundBite){
+
+//		Debug.Log ("Called networksound");
+//		Debug.Log (soundBite);
 
 		float[] data = ConvertByteToFloat (soundBite);
 
-		audio.clip.SetData (data, 0);
+//		foreach (float s in data) {
+//			Debug.Log (s);
+//		}
+
+		AudioClip audioClip = AudioClip.Create("testSound", data.Length, 1, 44100, true, false);
+		audioClip.SetData (data, 0);
+
+		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
 	}
 
-	private static byte[] ConvertByteToFloat(float[] floatArray1) 
+	private static byte[] ConvertFloatToByte(float[] floatArray1) 
 	{
 		// create a byte array and copy the floats into it...
 		byte[] byteArray = new byte[floatArray1.Length * 4];
@@ -80,7 +90,7 @@ public class MicrophoneInput : MonoBehaviour {
 		return byteArray;
 	}
 
-	private static float[] ConvertFloatToByte(byte[] byteArray){
+	private static float[] ConvertByteToFloat(byte[] byteArray){
 		// create a second float array and copy the bytes into it...
 		float[] floatArray2 = new float[byteArray.Length / 4];
 		Buffer.BlockCopy(byteArray, 0, floatArray2, 0, byteArray.Length);
