@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Audio/MicrophoneInput.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Networking/NetworkManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Audio/MicrophoneInput.cs" Line="73" Column="74" />
+      <File FileName="Assets/Scripts/Audio/MicrophoneInput.cs" Line="50" Column="1" />
+      <File FileName="Assets/Scripts/Networking/NetworkManager.cs" Line="64" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

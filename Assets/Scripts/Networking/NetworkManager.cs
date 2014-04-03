@@ -64,6 +64,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 
+
 	private void StartServer()
 	{
 		//Initialize server with up to 2 players, port 25002, and no NAT

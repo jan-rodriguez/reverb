@@ -60,6 +60,16 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
+	public float GetAverage(float[] data){
+		float a = 0;
+
+		foreach (float s in data) {
+			a += s;
+		}
+
+		return a / data.Length;
+	}
+
 	[RPC]
 	private void PlayNetworkedSound(float[] soundBite){
 
@@ -68,6 +78,25 @@ public class MicrophoneInput : MonoBehaviour {
 
 		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
+		UpdateOtherPlayerLight (soundBite);
+
+	}
+
+
+	private void UpdateOtherPlayerLight(float[] sound){
+		
+		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("MainCamera")){
+
+			if(playerCam != this){
+
+				playerCam.GetComponent<Light>().intensity = sensitivity * GetAverage(sound);
+
+			}
+
+		}
+
+
+		
 	}
 
 }
