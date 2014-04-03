@@ -12,6 +12,8 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float sensitivity = 10;
 	private float loudness = 0;
 
+	private bool playingSound = false;
+
 	public void Start() {
 		if (networkView.isMine) {
 			audio.clip = Microphone.Start (null, true, 10, 44100);
@@ -21,7 +23,8 @@ public class MicrophoneInput : MonoBehaviour {
 
 			while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
 			} // Wait until the recording has started
-			audio.Play (); // Play the audio source!
+
+//			audio.Play (); // Play the audio source!
 		}
 
 	}
@@ -43,9 +46,26 @@ public class MicrophoneInput : MonoBehaviour {
 			loudness = GetAveragedVolume () * sensitivity;
 			this.GetComponent<Light> ().intensity = loudness;
 		} else {
-			return;
+			PlaySound ();
 		}
 //		Debug.Log (loudness);
+
+	}
+
+	[RPC]
+	public void PlaySound() {
+		if(networkView.isMine) {
+			networkView.RPC("PlaySound", RPCMode.Others);
+		}
+		else{
+			//Play your sound on this character
+			if(!playingSound){
+				audio.Play ();
+				playingSound = true;
+			}
+
+			Debug.Log("Playing stuff");
+		}
 	}
 	
 }
