@@ -1,6 +1,5 @@
 using UnityEngine;
-using System.Collections;
-
+using System;
 /**
  * Class used to take input from the microphone
  */
@@ -55,17 +54,41 @@ public class MicrophoneInput : MonoBehaviour {
 	[RPC]
 	public void PlaySound() {
 		if(networkView.isMine) {
-			networkView.RPC("PlaySound", RPCMode.Others);
-		}
-		else{
-			//Play your sound on this character
-			if(!playingSound){
-				audio.Play ();
-				playingSound = true;
-			}
+			float[] data = new float[256];
+			float a = 0;
+			audio.GetOutputData(data,0);
 
-			Debug.Log("Playing stuff");
+			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
 		}
+
 	}
-	
+
+	private void PlayNetworkedSound(byte[] soundBite){
+
+		float[] data = ConvertByteToFloat (soundBite);
+
+		audio.clip.SetData (data, 0);
+
+	}
+
+	private static byte[] ConvertByteToFloat(float[] floatArray1) 
+	{
+		// create a byte array and copy the floats into it...
+		byte[] byteArray = new byte[floatArray1.Length * 4];
+		Buffer.BlockCopy(floatArray1, 0, byteArray, 0, byteArray.Length);
+
+		return byteArray;
+	}
+
+	private static float[] ConvertFloatToByte(byte[] byteArray){
+		// create a second float array and copy the bytes into it...
+		float[] floatArray2 = new float[byteArray.Length / 4];
+		Buffer.BlockCopy(byteArray, 0, floatArray2, 0, byteArray.Length);
+
+		return floatArray2;
+	}
+
+
+
+
 }
