@@ -85,7 +85,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	private void UpdateOtherPlayerLight(float[] sound){
 		
-		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("MainCamera")){
+		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
 
 			if(playerCam != this){
 
