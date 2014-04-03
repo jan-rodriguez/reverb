@@ -47,14 +47,13 @@ public class MicrophoneInput : MonoBehaviour {
 			this.GetComponent<Light> ().intensity = loudness;
 			PlaySound ();
 		}
-//		Debug.Log (loudness);
 
 	}
 
 	public void PlaySound() {
 		if(networkView.isMine) {
-			float[] data = new float[256];
-			audio.GetOutputData(data,1);
+			float[] data = new float[2048];
+			audio.GetOutputData(data,0);
 
 			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
 		}
@@ -64,37 +63,11 @@ public class MicrophoneInput : MonoBehaviour {
 	[RPC]
 	private void PlayNetworkedSound(float[] soundBite){
 
-//		float[] data = ConvertByteToFloat (soundBite);
-
-//		foreach (float s in data) {
-//			Debug.Log (s);
-//		}
-
 		AudioClip audioClip = AudioClip.Create("testSound", soundBite.Length, 1, 44100, true, false);
 		audioClip.SetData (soundBite, 0);
 
 		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
 	}
-
-	private static byte[] ConvertFloatToByte(float[] floatArray1) 
-	{
-		// create a byte array and copy the floats into it...
-		byte[] byteArray = new byte[floatArray1.Length * 4];
-		Buffer.BlockCopy(floatArray1, 0, byteArray, 0, byteArray.Length);
-
-		return byteArray;
-	}
-
-	private static float[] ConvertByteToFloat(byte[] byteArray){
-		// create a second float array and copy the bytes into it...
-		float[] floatArray2 = new float[byteArray.Length / 4];
-		Buffer.BlockCopy(byteArray, 0, floatArray2, 0, byteArray.Length);
-
-		return floatArray2;
-	}
-
-
-
 
 }
