@@ -51,7 +51,6 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
-	[RPC]
 	public void PlaySound() {
 		if(networkView.isMine) {
 			float[] data = new float[256];
@@ -63,19 +62,16 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 
 	[RPC]
-	private void PlayNetworkedSound(byte[] soundBite){
+	private void PlayNetworkedSound(float[] soundBite){
 
-//		Debug.Log ("Called networksound");
-//		Debug.Log (soundBite);
-
-		float[] data = ConvertByteToFloat (soundBite);
+//		float[] data = ConvertByteToFloat (soundBite);
 
 //		foreach (float s in data) {
 //			Debug.Log (s);
 //		}
 
-		AudioClip audioClip = AudioClip.Create("testSound", data.Length, 1, 44100, true, false);
-		audioClip.SetData (data, 0);
+		AudioClip audioClip = AudioClip.Create("testSound", soundBite.Length, 1, 44100, true, false);
+		audioClip.SetData (soundBite, 0);
 
 		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
