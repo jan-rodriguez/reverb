@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Audio/MicrophoneInput.cs">
     <Files>
       <File FileName="Assets/Scripts/Networking/NetworkManager.cs" Line="98" Column="28" />
-      <File FileName="Assets/Scripts/Audio/MicrophoneInput.cs" Line="12" Column="45" />
+      <File FileName="Assets/Scripts/Audio/MicrophoneInput.cs" Line="12" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

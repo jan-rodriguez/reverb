@@ -9,7 +9,7 @@ using System;
 public class MicrophoneInput : MonoBehaviour {
 
 	private const float MY_SENSITIVITY = 10;
-	private const float OTHER_PLAYER_SENSITIVITY = 100;
+	private const float OTHER_PLAYER_SENSITIVITY = 500;
 	private float loudness = 0;
 	
 	public void Start() {
