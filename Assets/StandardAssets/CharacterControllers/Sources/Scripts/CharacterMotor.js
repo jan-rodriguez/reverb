@@ -178,8 +178,13 @@ private var tr : Transform;
 
 private var controller : CharacterController;
 
+private var walkLight : Light;
+
+private final var LIGHTSENSITIVITY : float = .5;
+
 function Awake () {
 	controller = GetComponent (CharacterController);
+	walkLight = GetComponent (Light);
 	tr = transform;
 }
 
@@ -246,6 +251,10 @@ private function UpdateFunction () {
 	// This means our velocity will only be the amount the character actually moved as a result of collisions.
 	var oldHVelocity : Vector3 = new Vector3(velocity.x, 0, velocity.z);
 	movement.velocity = (tr.position - lastPosition) / Time.deltaTime;
+	
+	var walkingSpeed = movement.velocity.z * movement.velocity.z + movement.velocity.x * movement.velocity.x;
+	walkLight.intensity = Mathf.Sqrt(walkingSpeed) * LIGHTSENSITIVITY;
+	
 	var newHVelocity : Vector3 = new Vector3(movement.velocity.x, 0, movement.velocity.z);
 	
 	// The CharacterController can be moved in unwanted directions when colliding with things.

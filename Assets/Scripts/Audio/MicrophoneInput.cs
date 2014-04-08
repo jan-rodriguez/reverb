@@ -88,8 +88,6 @@ public class MicrophoneInput : MonoBehaviour {
 		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
 
 			if(playerCam != this){
-				Debug.Log("Updating other player camera");
-
 				playerCam.GetComponent<Light>().intensity = sensitivity * GetAverage(sound);
 
 			}
