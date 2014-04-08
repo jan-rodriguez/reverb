@@ -8,7 +8,8 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float sensitivity = 100;
+	private const float voiceSensitivity = 10;
+	private const float playerSensitivity = 100;
 	private float loudness = 0;
 	
 	public void Start() {
@@ -43,7 +44,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Update(){
 		if (networkView.isMine) {
-			loudness = GetAveragedVolume () * sensitivity;
+			loudness = GetAveragedVolume () * voiceSensitivity;
 			this.GetComponent<Light> ().intensity = loudness;
 			PlaySound ();
 		}
@@ -88,7 +89,7 @@ public class MicrophoneInput : MonoBehaviour {
 		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
 
 			if(playerCam != this){
-				playerCam.GetComponent<Light>().intensity = sensitivity * GetAverage(sound);
+				playerCam.GetComponent<Light>().intensity = playerSensitivity * GetAverage(sound);
 
 			}
 
