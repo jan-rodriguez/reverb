@@ -8,14 +8,16 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float voiceSensitivity = 10;
-	private const float playerSensitivity = 100;
+	private const float MY_SENSITIVITY = 10;
+	private const float OTHER_PLAYER_SENSITIVITY = 100;
 	private float loudness = 0;
 	
 	public void Start() {
 		if (networkView.isMine) {
 			audio.clip = Microphone.Start (null, true, 10, 44100);
 			audio.loop = true;
+
+			this.tag = null;
 
 			gameObject.AddComponent<AudioListener> ();
 
@@ -24,6 +26,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 			audio.Play (); // Play the audio source!
 			audio.mute = true;
+
 		}
 
 	}
@@ -44,7 +47,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Update(){
 		if (networkView.isMine) {
-			loudness = GetAveragedVolume () * voiceSensitivity;
+			loudness = GetAveragedVolume () * MY_SENSITIVITY;
 			this.GetComponent<Light> ().intensity = loudness;
 			PlaySound ();
 		}
@@ -87,12 +90,7 @@ public class MicrophoneInput : MonoBehaviour {
 	private void UpdateOtherPlayerLight(float[] sound){
 		
 		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
-
-			if(playerCam != this){
-				playerCam.GetComponent<Light>().intensity = playerSensitivity * GetAverage(sound);
-
-			}
-
+			playerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
 		}
 
 
