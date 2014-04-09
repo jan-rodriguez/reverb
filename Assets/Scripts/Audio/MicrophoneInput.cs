@@ -11,6 +11,8 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float MY_SENSITIVITY = 10;
 	private const float OTHER_PLAYER_SENSITIVITY = 500;
 	private float loudness = 0;
+
+	private GameObject otherPlayerCam;
 	
 	public void Start() {
 		if (networkView.isMine) {
@@ -88,11 +90,18 @@ public class MicrophoneInput : MonoBehaviour {
 
 
 	private void UpdateOtherPlayerLight(float[] sound){
+		//If the other player's camera hasn't been defined
+		if (otherPlayerCam != null) {
+			//Update the other player's light based on sound
+			otherPlayerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
+		}else{ //Define other player's cam
+			foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
+				//Found the player camera and can define it
+				otherPlayerCam = playerCam;
+				playerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
+			}
 		
-		foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
-			playerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
 		}
-
 
 		
 	}
