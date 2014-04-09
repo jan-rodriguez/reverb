@@ -1,1 +1,6 @@
 Library/metadata
+Library/ScriptAssemblies
+Library/guidmapper
+Library/assetDatabase3
+Temp/*
+*.sln
