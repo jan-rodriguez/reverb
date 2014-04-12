@@ -8,6 +8,11 @@ public class NetworkManager : MonoBehaviour {
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
 
+	//TODO: get this to be the server we setup
+	public void Start() {
+		MasterServer.ipAddress = "18.250.7.56";
+	}
+
 	//Display the overlay that the user will see when connecting/creating a server
 	public void OnGUI()
 	{
@@ -68,7 +73,7 @@ public class NetworkManager : MonoBehaviour {
 	private void StartServer()
 	{
 		//Initialize server with up to 2 players, port 25002, and no NAT
-		Network.InitializeServer(2, 25002, false);
+		Network.InitializeServer(2, 23466, false);
 		MasterServer.RegisterHost(registeredGameName, "Reverb Server", "Just testing");
 	}
 
