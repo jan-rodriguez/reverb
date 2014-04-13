@@ -10,7 +10,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	private const float MY_SENSITIVITY = 10;
 	private const float OTHER_PLAYER_SENSITIVITY = 500;
-	private const float MIN_LIGHT_DECREASE = .1f;
+	private const float MIN_LIGHT_DECREASE = 1.0f;
 	private float loudness = 0;
 
 	private GameObject otherPlayerCam;
@@ -51,10 +51,10 @@ public class MicrophoneInput : MonoBehaviour {
 	public void Update(){
 		if (networkView.isMine) {
 			float newLoudness = GetAveragedVolume () * MY_SENSITIVITY;
-			if(Math.Abs(newLoudness - loudness) < MIN_LIGHT_DECREASE){
+			if(Math.Abs(newLoudness - loudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
 				loudness = newLoudness;
 			}else{
-				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE : loudness + MIN_LIGHT_DECREASE;
+				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
 			}
 			this.GetComponent<Light> ().intensity = loudness;
 			PlaySound ();
