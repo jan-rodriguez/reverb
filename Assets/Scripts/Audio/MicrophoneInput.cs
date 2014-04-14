@@ -98,7 +98,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
-		UpdateOtherPlayerLight (soundBite);
+//		UpdateOtherPlayerLight (soundBite);
 
 	}
 
