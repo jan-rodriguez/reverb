@@ -104,19 +104,32 @@ public class MicrophoneInput : MonoBehaviour {
 
 
 	private void UpdateOtherPlayerLight(float[] sound){
+
+		float loudness = 0;
+
 		//If the other player's camera hasn't been defined
-		if (otherPlayerCam != null) {
-			//Update the other player's light based on sound
-			otherPlayerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
-		}else{ //Define other player's cam
+		if (otherPlayerCam == null) {
 			foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
 				//Found the player camera and can define it
 				otherPlayerCam = playerCam;
-				playerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * GetAverage(sound);
 			}
-		
+
+		}else{
+			float newLoudness = GetAverage(sound) * OTHER_PLAYER_SENSITIVITY;
+			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
+				if(newLoudness > MAX_LIGHT_INTENSITY){
+					loudness = MAX_LIGHT_INTENSITY;
+				}else{
+					loudness = newLoudness;
+					
+				}
+			}else{
+				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
+			}
 		}
 
+		otherPlayerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * loudness;
+		otherPlayerCam.GetComponent<Light> ().range = loudness * LOUD_TO_RANGE_RATIO;
 		
 	}
 
