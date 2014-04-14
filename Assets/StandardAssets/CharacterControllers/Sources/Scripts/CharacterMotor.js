@@ -180,7 +180,7 @@ private var controller : CharacterController;
 
 private var walkLight : Light;
 
-private final var LIGHTSENSITIVITY : float = .5;
+private final var LIGHTSENSITIVITY : float = .2;
 
 function Awake () {
 	controller = GetComponent (CharacterController);
