@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AI\SetAITarget.js" />
      <Compile Include="Assets\Scripts\AI\TheGoal.js" />
+     <Compile Include="Assets\Scripts\GameManager\GameManager.js" />
      <Compile Include="Assets\StandardAssets\CharacterControllers\Sources\Scripts\CharacterMotor.js" />
      <Compile Include="Assets\StandardAssets\CharacterControllers\Sources\Scripts\FPSInputController.js" />
      <Compile Include="Assets\StandardAssets\CharacterControllers\Sources\Scripts\PlatformInputController.js" />

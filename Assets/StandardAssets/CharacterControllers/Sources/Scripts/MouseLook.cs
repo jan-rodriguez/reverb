@@ -36,6 +36,11 @@ public class MouseLook : MonoBehaviour {
 		if (!networkView.isMine) {
 			return;
 		}
+
+		if (Screen.showCursor) {
+
+			return;
+		}
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;

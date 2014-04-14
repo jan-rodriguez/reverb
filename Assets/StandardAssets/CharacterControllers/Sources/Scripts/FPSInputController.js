@@ -11,6 +11,9 @@ function Update () {
 	if(!networkView.isMine) {
 		return;
 	}
+	if(Screen.showCursor) {
+		return;
+	}
 	// Get the input vector from keyboard or analog stick
 	var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 	

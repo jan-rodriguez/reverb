@@ -189,6 +189,10 @@ function Awake () {
 }
 
 private function UpdateFunction () {
+
+	if(Screen.showCursor){
+		return;
+	}
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
