@@ -68,6 +68,10 @@ public class MouseLook : MonoBehaviour {
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
+
+		if (!this.networkView.isMine) {
+			this.camera.enabled = false;
+		}
 	}
 
 	void Awake() 
