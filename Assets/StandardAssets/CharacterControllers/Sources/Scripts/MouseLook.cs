@@ -70,7 +70,9 @@ public class MouseLook : MonoBehaviour {
 			rigidbody.freezeRotation = true;
 
 		if (!this.networkView.isMine) {
-			this.camera.enabled = false;
+			if(this.camera != null){
+				this.camera.enabled = false;
+			}
 		}
 	}
 
