@@ -18,7 +18,7 @@ function Update () {
 			var data : float[];
 			var volume : float = 0;
 			
-			data = pitch.GetOutputData(256,0);
+			pitch.GetOutputData(data,0);
 			
 			var objLight : Light = pitch.GetComponent(Light);
 			

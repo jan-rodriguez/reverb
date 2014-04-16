@@ -15,7 +15,10 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
 
+	//Objects needed to be updated
 	private GameObject otherPlayerCam;
+	private Light otherPlayerLight;
+	private Light playerLight;
 	
 	public void Start() {
 		if (networkView.isMine) {
@@ -23,6 +26,9 @@ public class MicrophoneInput : MonoBehaviour {
 			audio.loop = true;
 
 			this.tag = null;
+
+			//Find the player's game objects
+			playerLight = this.GetComponent<Light> ();
 
 			gameObject.AddComponent<AudioListener> ();
 
@@ -52,19 +58,27 @@ public class MicrophoneInput : MonoBehaviour {
 
 	public void Update(){
 		if (networkView.isMine) {
+
+			//Get the new computed loudness from the microphone
 			float newLoudness = GetAveragedVolume () * MY_SENSITIVITY;
+
+			//Assure that the  loudness decreases stedily, and not flickering
 			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
+
+				//Assure that the loudness doesn't get too high
 				if(newLoudness > MAX_LIGHT_INTENSITY){
 					loudness = MAX_LIGHT_INTENSITY;
 				}else{
 					loudness = newLoudness;
-
 				}
-			}else{
+
+			}else{ //Loudness changed too much and want it to decrease slightly
 				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
 			}
-			this.GetComponent<Light> ().intensity = loudness;
-			this.GetComponent<Light> ().range = loudness * LOUD_TO_RANGE_RATIO;
+			playerLight.intensity = loudness;
+			playerLight.range = loudness * LOUD_TO_RANGE_RATIO;
+
+			//Play the microphone's input over the network
 			PlaySound ();
 		}
 
@@ -90,6 +104,7 @@ public class MicrophoneInput : MonoBehaviour {
 		return a / data.Length;
 	}
 
+	//Play the sound from the other player on your client
 	[RPC]
 	private void PlayNetworkedSound(float[] soundBite){
 
@@ -109,11 +124,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 		//If the other player's camera hasn't been defined
 		if (otherPlayerCam == null) {
-			foreach( GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")){
-				//Found the player camera and can define it
-				otherPlayerCam = playerCam;
-			}
-
+			SetOtherPlayerCam(); //Define it
 		}else{
 			float newLoudness = GetAverage(sound) * OTHER_PLAYER_SENSITIVITY;
 			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
@@ -127,10 +138,23 @@ public class MicrophoneInput : MonoBehaviour {
 				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
 			}
 		}
-
-		otherPlayerCam.GetComponent<Light>().intensity = OTHER_PLAYER_SENSITIVITY * loudness;
-		otherPlayerCam.GetComponent<Light> ().range = loudness * LOUD_TO_RANGE_RATIO;
+	
+		//Update the other player's light
+		otherPlayerLight.intensity = OTHER_PLAYER_SENSITIVITY * loudness;
+		otherPlayerLight.range = loudness * LOUD_TO_RANGE_RATIO;
 		
 	}
+
+	//Set the other player's camera
+	private void SetOtherPlayerCam() {
+		if (otherPlayerCam == null) {
+			foreach (GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")) {
+				//Found the player camera and can define it
+				otherPlayerCam = playerCam;
+			}
+			otherPlayerLight = otherPlayerCam.GetComponent<Light>();
+		}
+	}
+
 
 }
