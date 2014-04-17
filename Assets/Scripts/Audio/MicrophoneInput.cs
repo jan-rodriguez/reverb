@@ -14,6 +14,7 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float MAX_LIGHT_INTENSITY = 1.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
+	private float otherLoudness = 0;
 
 	//Objects needed to be updated
 	private GameObject otherPlayerCam;
@@ -59,22 +60,8 @@ public class MicrophoneInput : MonoBehaviour {
 	public void Update(){
 		if (networkView.isMine) {
 
-			//Get the new computed loudness from the microphone
-			float newLoudness = GetAveragedVolume () * MY_SENSITIVITY;
+			SetNewLoudness();
 
-			//Assure that the  loudness decreases stedily, and not flickering
-			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
-
-				//Assure that the loudness doesn't get too high
-				if(newLoudness > MAX_LIGHT_INTENSITY){
-					loudness = MAX_LIGHT_INTENSITY;
-				}else{
-					loudness = newLoudness;
-				}
-
-			}else{ //Loudness changed too much and want it to decrease slightly
-				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
-			}
 			playerLight.intensity = loudness;
 			playerLight.range = loudness * LOUD_TO_RANGE_RATIO;
 
@@ -84,12 +71,36 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
+	public void SetNewLoudness() {
+		//Get the new computed loudness from the microphone
+		float newLoudness = GetAveragedVolume () * MY_SENSITIVITY;
+		
+		//Assure that the  loudness decreases stedily, and not flickering
+		if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
+			
+			//Assure that the loudness doesn't get too high
+			if(newLoudness > MAX_LIGHT_INTENSITY){
+				loudness = MAX_LIGHT_INTENSITY;
+			}else{
+				loudness = newLoudness;
+			}
+			
+		}else{ //Loudness changed too much and want it to decrease slightly
+			loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
+		}
+
+	}
+
 	public void PlaySound() {
 		if(networkView.isMine) {
 			float[] data = new float[2048];
 			audio.GetOutputData(data,0);
 
+			float[] intensity = new float[1];
+			intensity[0] = loudness;
+
 			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
+			networkView.RPC("UpdateOtherPlayerLight", RPCMode.Others, intensity);
 		}
 
 	}
@@ -113,35 +124,21 @@ public class MicrophoneInput : MonoBehaviour {
 
 		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
 
-//		UpdateOtherPlayerLight (soundBite);
-
 	}
 
+	//Make the sound 
+	[RPC]
+	private void UpdateOtherPlayerLight(float[] intensityArr){
 
-	private void UpdateOtherPlayerLight(float[] sound){
+		float intensity = intensityArr [0];
 
-		float loudness = 0;
-
-		//If the other player's camera hasn't been defined
-		if (otherPlayerCam == null) {
-			SetOtherPlayerCam(); //Define it
-		}else{
-			float newLoudness = GetAverage(sound) * OTHER_PLAYER_SENSITIVITY;
-			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
-				if(newLoudness > MAX_LIGHT_INTENSITY){
-					loudness = MAX_LIGHT_INTENSITY;
-				}else{
-					loudness = newLoudness;
-					
-				}
-			}else{
-				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
-			}
+		if (otherPlayerLight == null) {
+			SetOtherPlayerCam();
 		}
 	
 		//Update the other player's light
-		otherPlayerLight.intensity = OTHER_PLAYER_SENSITIVITY * loudness;
-		otherPlayerLight.range = loudness * LOUD_TO_RANGE_RATIO;
+		otherPlayerLight.intensity = MY_SENSITIVITY * intensity;
+		otherPlayerLight.range = intensity * LOUD_TO_RANGE_RATIO;
 		
 	}
 

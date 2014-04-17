@@ -32,6 +32,7 @@ public class NetworkManager : MonoBehaviour {
 			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
 			{
 				SpawnPlayer();
+				gameObject.camera.enabled = false;
 			}
 		}
 
@@ -65,7 +66,7 @@ public class NetworkManager : MonoBehaviour {
 					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
-					
+
 				}
 				      
 			}
