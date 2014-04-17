@@ -5,7 +5,6 @@ public class NetworkManager : MonoBehaviour {
 
 	string registeredGameName = "Reverb_TestServer_Tutorial";
 //	bool isRefreshing = false;
-	bool spawned = false;
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
 
@@ -30,13 +29,10 @@ public class NetworkManager : MonoBehaviour {
 			GUILayout.Label("Running as a client");
 
 			//Add button for clients to start server
-			if(!spawned){
-
-				if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
-				{
-					SpawnPlayer();
-					gameObject.camera.enabled = false;
-				}
+			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
+			{
+				SpawnPlayer();
+				gameObject.camer.enabled = false;
 			}
 		}
 
@@ -112,6 +108,8 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log ("Spawning player");
 
+
+
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
 		{
@@ -124,8 +122,6 @@ public class NetworkManager : MonoBehaviour {
 		}else{
 			Debug.Log("error getting prefab");
 		}
-
-		spawned = true;
 	}
 
 	//----------------------------Call Backs from client and server---------------------------

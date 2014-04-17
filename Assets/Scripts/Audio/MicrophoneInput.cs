@@ -14,6 +14,7 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float MAX_LIGHT_INTENSITY = 1.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
+	private float otherLoudness = 0;
 
 	//Objects needed to be updated
 	private GameObject otherPlayerCam;
@@ -120,28 +121,26 @@ public class MicrophoneInput : MonoBehaviour {
 
 	private void UpdateOtherPlayerLight(float[] sound){
 
-		float loudness = 0;
-
 		//If the other player's camera hasn't been defined
 		if (otherPlayerCam == null) {
 			SetOtherPlayerCam(); //Define it
 		}else{
 			float newLoudness = GetAverage(sound) * OTHER_PLAYER_SENSITIVITY;
-			if((loudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
+			if((otherLoudness - newLoudness) < MIN_LIGHT_DECREASE * Time.deltaTime){
 				if(newLoudness > MAX_LIGHT_INTENSITY){
-					loudness = MAX_LIGHT_INTENSITY;
+					otherLoudness = MAX_LIGHT_INTENSITY;
 				}else{
-					loudness = newLoudness;
+					otherLoudness = newLoudness;
 					
 				}
 			}else{
-				loudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
+				otherLoudness = (newLoudness - loudness) < 0 ? loudness - MIN_LIGHT_DECREASE * Time.deltaTime : loudness + MIN_LIGHT_DECREASE * Time.deltaTime;
 			}
 		}
 	
 		//Update the other player's light
-		otherPlayerLight.intensity = OTHER_PLAYER_SENSITIVITY * loudness;
-		otherPlayerLight.range = loudness * LOUD_TO_RANGE_RATIO;
+		otherPlayerLight.intensity = OTHER_PLAYER_SENSITIVITY * otherLoudness;
+		otherPlayerLight.range = otherLoudness * LOUD_TO_RANGE_RATIO;
 		
 	}
 
