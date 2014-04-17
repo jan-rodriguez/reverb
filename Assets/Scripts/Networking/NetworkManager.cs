@@ -9,7 +9,7 @@ public class NetworkManager : MonoBehaviour {
 	HostData[] hostData;
 
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
-	readonly Vector3 PLAYER2SPAWN = new Vector3 (5.74261f, 464.0021f, 0);
+	readonly Vector3 PLAYER2SPAWN = new Vector3 (-56.66432f, 464.0021f, 171.2229f);
 
 	//TODO: get this to be the server we setup
 	public void Start() {
