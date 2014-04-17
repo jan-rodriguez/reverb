@@ -66,8 +66,7 @@ public class NetworkManager : MonoBehaviour {
 					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
-					SpawnPlayer();
-					
+
 				}
 				      
 			}
