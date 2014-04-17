@@ -71,7 +71,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
-	public float SetNewLoudness() {
+	public void SetNewLoudness() {
 		//Get the new computed loudness from the microphone
 		float newLoudness = GetAveragedVolume () * MY_SENSITIVITY;
 		
@@ -97,7 +97,7 @@ public class MicrophoneInput : MonoBehaviour {
 			audio.GetOutputData(data,0);
 
 			float[] intensity = new float[1];
-			intensity[0] = loudness];
+			intensity[0] = loudness;
 
 			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
 			networkView.RPC("UpdateOtherPlayerLight", RPCMode.Others, intensity);
@@ -131,6 +131,10 @@ public class MicrophoneInput : MonoBehaviour {
 	private void UpdateOtherPlayerLight(float[] intensityArr){
 
 		float intensity = intensityArr [0];
+
+		if (otherPlayerLight == null) {
+			SetOtherPlayerCam();
+		}
 	
 		//Update the other player's light
 		otherPlayerLight.intensity = MY_SENSITIVITY * intensity;
