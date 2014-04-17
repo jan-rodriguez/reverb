@@ -32,7 +32,7 @@ public class NetworkManager : MonoBehaviour {
 			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
 			{
 				SpawnPlayer();
-				gameObject.camer.enabled = false;
+				gameObject.camera.enabled = false;
 			}
 		}
 
