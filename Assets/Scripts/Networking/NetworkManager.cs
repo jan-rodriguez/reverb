@@ -8,6 +8,9 @@ public class NetworkManager : MonoBehaviour {
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
 
+	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
+	readonly Vector3 PLAYER2SPAWN = new Vector3 (5.74261f, 464.0021f, 0);
+
 	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
@@ -104,10 +107,17 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log ("Spawning player");
 
+
+
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
 		{
-			Network.Instantiate (playerPrefab, new Vector3 (145.5427f, 373.8164f, 225.1191f), Quaternion.identity, 0);
+			//Spawn player in correct location
+			if( Network.isServer){
+				Network.Instantiate (playerPrefab, PLAYER1SPAWN, Quaternion.identity, 0);
+			} else {
+				Network.Instantiate (playerPrefab, PLAYER2SPAWN, Quaternion.identity, 0);
+			}
 		}else{
 			Debug.Log("error getting prefab");
 		}
