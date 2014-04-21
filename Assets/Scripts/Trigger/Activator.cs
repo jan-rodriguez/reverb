@@ -24,13 +24,11 @@ public class Activator : MonoBehaviour {
 			RaycastHit hit;
 			
 			if (Physics.Raycast(ray, out hit)) {
-				Debug.Log("Hit " + hit.transform.name);
 				Activateable toActivate = hit.transform.GetComponent<Activateable>();
 				if (toActivate != null && toActivate.type == Activateable.TRIGGERTYPE.USE) {
+					Debug.Log ("Activated " + toActivate.name);
 					toActivate.Activate();
 				}
-			} else {
-				Debug.Log("Hit nothing");
 			}
 		}
 		// See OnTriggerEnter() and OnTriggerExit() on individual activateables handling CONTACT activateables.
