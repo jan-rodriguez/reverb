@@ -11,6 +11,9 @@ public class NetworkManager : MonoBehaviour {
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
 
+	private GameObject player1Object;
+	private GameObject player2Object;
+
 	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
@@ -73,6 +76,21 @@ public class NetworkManager : MonoBehaviour {
 		}
 	}
 
+	// Respawn players if they fall
+	void FixedUpdate() {
+
+		// Spawn player in correct location if they fall off the map
+		if (player1Object != null) {
+			if (player1Object.transform.position.y < 400) {
+				player1Object.transform.position = PLAYER1SPAWN;
+			}
+		}
+		if (player2Object != null) {
+			if (player2Object.transform.position.y < 400) {
+				player2Object.transform.position = PLAYER2SPAWN;
+			}
+		}
+	}
 
 	private void StartServer()
 	{
@@ -115,9 +133,9 @@ public class NetworkManager : MonoBehaviour {
 		{
 			//Spawn player in correct location
 			if( Network.isServer){
-				Network.Instantiate (playerPrefab, PLAYER1SPAWN, Quaternion.identity, 0);
+				player1Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER1SPAWN, Quaternion.identity, 0);
 			} else {
-				Network.Instantiate (playerPrefab, PLAYER2SPAWN, Quaternion.identity, 0);
+				player2Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER2SPAWN, Quaternion.identity, 0);
 			}
 		}else{
 			Debug.Log("error getting prefab");
