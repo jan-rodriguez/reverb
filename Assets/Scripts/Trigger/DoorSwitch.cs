@@ -10,6 +10,7 @@ public class DoorSwitch : Activateable {
 	public float activatedLightIntensity = 2f;
 	public float deactivatedLightIntensity = 1f;
 
+	[RPC]
 	public override void OnActivation() {
 		if (door.IsOpen) {
 			door.Close();

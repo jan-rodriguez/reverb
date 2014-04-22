@@ -48,7 +48,7 @@ public class Activateable : MonoBehaviour {
 			activated = true;
 			Debug.Log ("Object activated.");
 			activationCooldownTimer = activationCooldown;
-			OnActivation();
+			networkView.RPC("OnActivation", RPCMode.All);
 			return true;
 		}
 		// Activation failed
