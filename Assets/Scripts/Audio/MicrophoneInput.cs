@@ -135,7 +135,10 @@ public class MicrophoneInput : MonoBehaviour {
 		if (otherPlayerLight == null) {
 			SetOtherPlayerCam();
 		}
-	
+		if (intensity > MAX_LIGHT_INTENSITY) {
+
+			intensity = MAX_LIGHT_INTENSITY;
+		}
 		//Update the other player's light
 		otherPlayerLight.intensity = MY_SENSITIVITY * intensity;
 		otherPlayerLight.range = intensity * LOUD_TO_RANGE_RATIO;
