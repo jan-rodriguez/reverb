@@ -8,10 +8,4 @@ function Start () {
 
 function Update () {
 
-	if(Input.GetKeyDown("escape")) {
-	
-		Screen.showCursor = !Screen.showCursor;
-	
-	}
-
 }

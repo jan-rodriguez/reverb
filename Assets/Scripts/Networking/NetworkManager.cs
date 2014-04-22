@@ -7,6 +7,7 @@ public class NetworkManager : MonoBehaviour {
 //	bool isRefreshing = false;
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
+	public bool DisplayingNetworkGUI;
 
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
@@ -22,7 +23,7 @@ public class NetworkManager : MonoBehaviour {
 	//Display the overlay that the user will see when connecting/creating a server
 	public void OnGUI()
 	{
-
+		DisplayingNetworkGUI = true;
 		//Test display. Just show what type of connection you have
 		if(Network.isServer)
 		{
@@ -43,6 +44,7 @@ public class NetworkManager : MonoBehaviour {
 		//Don't display buttons if we are connected
 		if (Network.isClient || Network.isServer) 
 		{
+			DisplayingNetworkGUI = false;
 			return;
 		}
 
