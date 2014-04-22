@@ -139,7 +139,7 @@ public class MicrophoneInput : MonoBehaviour {
 			intensity = MAX_LIGHT_INTENSITY;
 		}
 		//Update the other player's light
-		otherPlayerLight.intensity = MY_SENSITIVITY * intensity;
+		otherPlayerLight.intensity = intensity;
 		otherPlayerLight.range = intensity * LOUD_TO_RANGE_RATIO;
 		
 	}
