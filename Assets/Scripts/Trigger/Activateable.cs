@@ -19,9 +19,6 @@ public class Activateable : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		// Make the object glow
-		// TODO: NOT YET IMPLEMENTED
 
 	}
 	

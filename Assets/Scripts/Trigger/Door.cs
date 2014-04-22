@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
+	// Used to make the door glow as it opens or closes
+	public Light doorMovementLight;
+	public float doorMovementLightIntensityFactor = 6f;
+
 	// Position the door should be when it is closed - doesn't need to be set,
 	// because the code in Start() set it to the object's editor position.
 	private Vector3 closePosition;
@@ -19,6 +23,9 @@ public class Door : MonoBehaviour {
 	// Used as a part of smoothly transitioning the door from open to closed.
 	private float moveStartTime;
 
+	// Used to keep track of the door's velocity
+	private Vector3 doorOldPosition;
+
 	void Start() {
 		// Set closed position to the current position in the scene at the start
 		closePosition = transform.position;
@@ -33,12 +40,21 @@ public class Door : MonoBehaviour {
 		// or closing
 		float t = (Time.time - moveStartTime) / timeToOpenOrClose;
 
+		// Set old door position because we're about to change it
+		doorOldPosition = transform.position;
+
 		// Smoothly move the door between open and closed or vice-versa
 		transform.position = new Vector3(
 			Mathf.SmoothStep (transform.position.x, desiredPosition.x, t),
 			Mathf.SmoothStep (transform.position.y, desiredPosition.y, t),
 			Mathf.SmoothStep (transform.position.z, desiredPosition.z, t)
 			);
+
+		// Get the speed the door has moved in the y direction
+		float doorYPositionAbsoluteDelta = Mathf.Abs (transform.position.y - doorOldPosition.y);
+
+		// Set the intensity according to that speed and a multiplier
+		doorMovementLight.intensity = doorMovementLightIntensityFactor * doorYPositionAbsoluteDelta;
 
 	}
 
