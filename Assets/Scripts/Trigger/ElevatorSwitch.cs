@@ -9,6 +9,8 @@ public class ElevatorSwitch : Activateable {
 	public float inactiveGlowIntensity = 0.5f;
 	public float activeGlowIntensity = 1f;
 
+	private Transform colliderTrans;
+
 	// Use this for initialization
 	void Start () {
 
@@ -20,6 +22,12 @@ public class ElevatorSwitch : Activateable {
 	}
 
 	void OnTriggerEnter (Collider collider) {
+
+		if (collider.transform.tag == "PlayerPrefab") {	
+			colliderTrans = collider.transform;
+			colliderTrans.parent = gameObject.transform;
+		}
+
 		if (colliders.Count == 0) { // If this is the first collider to enter, activate
 			activated = true;
 			OnActivation ();
@@ -33,6 +41,9 @@ public class ElevatorSwitch : Activateable {
 			OnDeactivation ();
 		}
 		colliders.Remove (collider);
+
+		colliderTrans.parent = null;
+		colliderTrans = null;
 	}
 
 	public override void OnActivation() {
