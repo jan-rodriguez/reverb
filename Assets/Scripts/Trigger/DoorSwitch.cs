@@ -10,8 +10,14 @@ public class DoorSwitch : Activateable {
 	public float activatedLightIntensity = 2f;
 	public float deactivatedLightIntensity = 1f;
 
-	[RPC]
+
 	public override void OnActivation() {
+		networkView.RPC ("ActivateDoor", RPCMode.All);
+
+	}
+
+	[RPC]
+	public void ActivateDoor(){
 		if (door.IsOpen) {
 			door.Close();
 			// switch to deactivated lighting
