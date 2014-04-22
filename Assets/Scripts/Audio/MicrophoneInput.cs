@@ -148,10 +148,7 @@ public class MicrophoneInput : MonoBehaviour {
 	//Set the other player's camera
 	private void SetOtherPlayerCam() {
 		if (otherPlayerCam == null) {
-			foreach (GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")) {
-				//Found the player camera and can define it
-				otherPlayerCam = playerCam;
-			}
+			otherPlayerCam = GameObject.FindGameObjectWithTag ("Player")) {
 			otherPlayerLight = otherPlayerCam.GetComponent<Light>();
 		}
 	}
