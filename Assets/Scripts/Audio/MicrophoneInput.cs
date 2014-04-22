@@ -8,10 +8,10 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float MY_SENSITIVITY = 10;
+	private const float MY_SENSITIVITY = 20;
 	private const float OTHER_PLAYER_SENSITIVITY = 500;
 	private const float MIN_LIGHT_DECREASE = 1.0f;
-	private const float MAX_LIGHT_INTENSITY = 1.0f;
+	private const float MAX_LIGHT_INTENSITY = .75f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
 	private float otherLoudness = 0;
