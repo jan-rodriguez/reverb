@@ -37,7 +37,7 @@ public class NetworkManager : MonoBehaviour {
 			{
 				SpawnPlayer();
 				gameObject.camera.enabled = false;
-				DisplayingNetworkGUI = true;
+				DisplayingNetworkGUI = false;
 			}
 		}
 
