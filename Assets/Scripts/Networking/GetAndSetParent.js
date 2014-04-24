@@ -18,6 +18,13 @@ function SetOtherPlayerParent( parentName : String ) {
 
 }
 
+@RPC
+function RemoveOtherPlayerParent( parentName : String ) {
+	
+	otherPlayer.transform.parent = null;
+
+}
+
 
 //Set the other player's camera
 function SetOtherPlayer() {
