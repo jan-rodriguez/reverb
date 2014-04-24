@@ -11,6 +11,8 @@ public class NetworkManager : MonoBehaviour {
 
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
+	readonly Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
+	readonly Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
 
 	private GameObject player1Object;
 	private GameObject player2Object;
@@ -83,13 +85,13 @@ public class NetworkManager : MonoBehaviour {
 
 		// Spawn player in correct location if they fall off the map
 		if (player1Object != null) {
-			if (player1Object.transform.position.y < 400) {
-				player1Object.transform.position = PLAYER1SPAWN;
+			if (player1Object.transform.position.y < 300) {
+				player1Object.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN);
 			}
 		}
 		if (player2Object != null) {
-			if (player2Object.transform.position.y < 400) {
-				player2Object.transform.position = PLAYER2SPAWN;
+			if (player2Object.transform.position.y < 300) {
+				player2Object.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN);
 			}
 		}
 	}
@@ -127,17 +129,20 @@ public class NetworkManager : MonoBehaviour {
 	private void SpawnPlayer()
 	{
 		Debug.Log ("Spawning player");
-
-
+		Debug.Log (Application.loadedLevelName);
 
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
 		{
 			//Spawn player in correct location
 			if( Network.isServer){
-				player1Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER1SPAWN, Quaternion.identity, 0);
+				player1Object = (GameObject)Network.Instantiate (playerPrefab,
+				                                    (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN),
+				 									Quaternion.identity, 0);
 			} else {
-				player2Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER2SPAWN, Quaternion.identity, 0);
+				player2Object = (GameObject)Network.Instantiate (playerPrefab, 
+				                                    (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN),
+				                                    Quaternion.identity, 0);
 			}
 		}else{
 			Debug.Log("error getting prefab");

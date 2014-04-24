@@ -2,7 +2,7 @@
 
 function Start () {
 
-	Screen.showCursor = true;
+	Screen.showCursor = false;
 
 }
 
