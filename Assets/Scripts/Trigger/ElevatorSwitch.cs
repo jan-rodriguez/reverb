@@ -41,7 +41,7 @@ public class ElevatorSwitch : Activateable {
 		}
 		colliders.Remove (collider);
 
-		if (collider.transform.tag == "PlayerPrefab") {	
+		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {	
 			collider.networkView.RPC("RemoveOtherPlayerParent", RPCMode.Others, gameObject.transform.root.name);
 			collider.transform.parent = null;
 		}
