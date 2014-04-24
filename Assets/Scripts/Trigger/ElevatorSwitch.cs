@@ -21,7 +21,7 @@ public class ElevatorSwitch : Activateable {
 
 	void OnTriggerEnter (Collider collider) {
 
-		if (collider.transform.tag == "PlayerPrefab") {	
+		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {	
 			collider.transform.parent = gameObject.transform.root;
 			//Let other player know that you set your new parent
 			collider.networkView.RPC("SetOtherPlayerParent", RPCMode.Others, gameObject.transform.root.name);
