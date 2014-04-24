@@ -4,20 +4,20 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour {
 
 	string registeredGameName = "Reverb_TestServer_Tutorial";
-//	bool isRefreshing = false;
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
-	public bool DisplayingNetworkGUI;
 
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
 
 	private GameObject player1Object;
 	private GameObject player2Object;
+	public bool DisplayingNetworkGUI;
 
 	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
+		DisplayingNetworkGUI = true;
 	}
 
 	//Display the overlay that the user will see when connecting/creating a server
@@ -37,6 +37,7 @@ public class NetworkManager : MonoBehaviour {
 			{
 				SpawnPlayer();
 				gameObject.camera.enabled = false;
+				DisplayingNetworkGUI = true;
 			}
 		}
 

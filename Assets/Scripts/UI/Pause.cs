@@ -5,21 +5,28 @@ public class Pause : MonoBehaviour {
 
 	public bool isPaused = false;
 	public string currentMenu;
+	public GUIStyle titleStyle;
+	public GUIStyle buttonStyle;
+	public NetworkManager networkManager;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake() {
+		if (null == networkManager){
+			Debug.LogError("NetworkManager not found. This code will crash.");
+		}
 	}
 
 	// Update is called once per frame
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Escape) && !isPaused) {
-			TogglePause();
-			Screen.showCursor = true;
-		} else if (Input.GetKeyDown(KeyCode.Escape) && isPaused) {
-			TogglePause();
-
-			Screen.showCursor = false;
+		bool showPauseScreen = !networkManager.DisplayingNetworkGUI;
+		if(showPauseScreen) {
+			if (Input.GetKeyDown(KeyCode.Escape) && !isPaused) {
+				TogglePause();
+				Screen.showCursor = true;
+			} else if (Input.GetKeyDown(KeyCode.Escape) && isPaused) {
+				TogglePause();
+				Screen.showCursor = false;
+			}
 		}
 	}
 
@@ -53,15 +60,15 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void PausedMenu() {
-		GUI.Label (new Rect(10, 10, 200, 50), "Paused");
-		if(GUI.Button(new Rect(10, 70, 200, 50), "Options")) {
+		GUI.Label (new Rect(0, 0, Screen.width, Screen.height), "Paused", titleStyle);
+		if(GUI.Button(new Rect(10, 70, 200, 50), "Options", buttonStyle)) {
 			Display("Options");
 		}
 	}
 
 	public void OptionsMenu() {
-		GUI.Label (new Rect(10, 10, 200, 50), "Options");
-		if(GUI.Button(new Rect(10, 70, 200, 50), "Back")) {
+		GUI.Label (new Rect(0, 0, Screen.width, Screen.height), "Options", titleStyle);
+		if(GUI.Button(new Rect(10, 70, 200, 50), "Back", buttonStyle)) {
 			Display("Paused");
 		}
 	}
