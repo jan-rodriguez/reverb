@@ -138,7 +138,7 @@ public class NetworkManager : MonoBehaviour {
 			if( Network.isServer){
 				player1Object = (GameObject)Network.Instantiate (playerPrefab,
 				                                    (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN),
-				 									Quaternion.identity, 0);
+				                                                 Quaternion.identity, 0);
 			} else {
 				player2Object = (GameObject)Network.Instantiate (playerPrefab, 
 				                                    (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN),
@@ -185,6 +185,18 @@ public class NetworkManager : MonoBehaviour {
 		if(Network.isClient)
 		{
 			Network.Disconnect(200);
+		}
+	}
+
+	public GameObject Player1Object {
+		get {
+			return player1Object;
+		}
+	}
+
+	public GameObject Player2Object {
+		get {
+			return player2Object;
 		}
 	}
 
