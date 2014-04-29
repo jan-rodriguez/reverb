@@ -21,7 +21,6 @@ public class DoorSwitch : Activateable {
 
 	public override void OnActivation() {
 		networkView.RPC ("ActivateDoor", RPCMode.All);
-
 	}
 
 	[RPC]

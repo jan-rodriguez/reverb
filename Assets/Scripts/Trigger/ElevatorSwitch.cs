@@ -15,7 +15,7 @@ public class ElevatorSwitch : Activateable {
 	// Use this for initialization
 	void Start () {
 		inactiveColor = elevatorSwitchLight.color;
-		//activeColor = new Color(1,0,0);
+		//activeColor = new Color(0,0.5,1);
 	}
 	
 	// Update is called once per frame

@@ -19,7 +19,7 @@ public class Activator : MonoBehaviour {
 	void FixedUpdate () {
 
 		// USE trigger handling
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("e")) {
 			Ray ray = referenceCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
 			RaycastHit hit;
 			
