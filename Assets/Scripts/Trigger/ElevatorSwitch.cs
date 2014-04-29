@@ -8,10 +8,14 @@ public class ElevatorSwitch : Activateable {
 	public Light elevatorSwitchLight;
 	public float inactiveGlowIntensity = 0.5f;
 	public float activeGlowIntensity = 1f;
+	public Color activeColor;
+
+	private Color inactiveColor;
 	
 	// Use this for initialization
 	void Start () {
-
+		inactiveColor = elevatorSwitchLight.color;
+		//activeColor = new Color(1,0,0);
 	}
 	
 	// Update is called once per frame
@@ -50,12 +54,14 @@ public class ElevatorSwitch : Activateable {
 	public override void OnActivation() {
 		if (elevatorSwitchLight != null) {
 			elevatorSwitchLight.intensity = activeGlowIntensity;
+			elevatorSwitchLight.color = activeColor;
 		}
 	}
 
 	public override void OnDeactivation() {
 		if (elevatorSwitchLight != null) {
 			elevatorSwitchLight.intensity = inactiveGlowIntensity;
+			elevatorSwitchLight.color = inactiveColor;
 		}
 	}
 }
