@@ -13,7 +13,6 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float MAX_LIGHT_INTENSITY = 2.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
-	private float otherLoudness = 0;
 
 	//Objects needed to be updated
 	private GameObject otherPlayerCam;
