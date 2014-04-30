@@ -14,6 +14,8 @@ public class NetworkManager : MonoBehaviour {
 	private GameObject player1Object;
 	private GameObject player2Object;
 
+	public GameObject uSpeaker;
+
 	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
@@ -126,7 +128,8 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log ("Spawning player");
 
-
+		//Spawn a uspeaker as well
+		Network.Instantiate (uSpeaker, Vector3.zero, Quaternion.identity, 0);
 
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
