@@ -16,16 +16,14 @@ public class DoorSwitchKeyboardCollider : MonoBehaviour {
 	}
 
 	void onTriggerEnter (Collider collider) {
-		if (collider.transform.tag == "PlayerPrefab") {
+		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {
 			enter = true;
-			print (enter);
 		}
 	}
 
 	void onTriggerExit (Collider collider) {
 		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {
 			enter = false;
-			print (enter);
 		}
 	}
 }
