@@ -13,17 +13,27 @@ using UnityEngine;
 using MoPhoGames.USpeak.Interface;
 
 
-public class PhotonVoiceSender : MonoBehaviour, ISpeechDataHandler
+public class VoiceSender : MonoBehaviour, ISpeechDataHandler
 {
 	USpeaker spk;
+	private Light otherPlayerLight;
+	private Light myLight;
+	private const float MY_SENSITIVITY = .1f;
+	private const float MIN_LIGHT_DECREASE = 1.0f;
+	private const float MAX_LIGHT_INTENSITY = 2.0f;
+	private const float LOUD_TO_RANGE_RATIO = 20.0f;
+	private float loudness = 0;
 
 	void Start() {
 		spk = USpeaker.Get (this);
+		this.tag = null;
 		if (networkView.isMine) {
+			gameObject.AddComponent<AudioListener> ();
 			spk.SpeakerMode = SpeakerMode.Local;
 		}else{
 			spk.SpeakerMode = SpeakerMode.Remote;
 		}
+		myLight = gameObject.GetComponent<Light> ();
 
 	}
 
@@ -47,6 +57,23 @@ public class PhotonVoiceSender : MonoBehaviour, ISpeechDataHandler
 	[RPC]
 	void vc( byte[] data ){
 		spk.ReceiveAudio (data);
+	}
+
+	public float GetAverage(byte[] data){
+		int a = 0;
+		
+		foreach (byte s in data) {
+			a += s;
+		}
+		
+		return (float)a / data.Length;
+	}
+
+	//Set the other player's camera
+	private void SetOtherPlayerLight() {
+		if (otherPlayerLight == null) {
+			otherPlayerLight = GameObject.FindGameObjectWithTag ("Player").GetComponent<Light>();
+		}
 	}
 
 }
