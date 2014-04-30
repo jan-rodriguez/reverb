@@ -355,6 +355,7 @@ public class USpeaker : MonoBehaviour
 		{
 			return ( source as Component ).GetComponent<USpeaker>();
 		}
+		print ("Error, couldn't get uspeaker object");
 		return null;
 	}
 
@@ -394,6 +395,7 @@ public class USpeaker : MonoBehaviour
 		if( settings == null )
 		{
 			Debug.LogWarning( "Trying to receive remote audio data without calling InitializeSettings!\nIncoming packet will be ignored" );
+			UpdateSettings();
 		}
 
 		if( MuteAll || Mute || ( SpeakerMode == SpeakerMode.Local && !DebugPlayback ) )
