@@ -25,15 +25,15 @@ public class VoiceSender : MonoBehaviour, ISpeechDataHandler
 	private float loudness = 0;
 
 	void Start() {
-		spk = USpeaker.Get (this);
+		spk = USpeaker.Get (gameObject);
 		this.tag = null;
 		if (networkView.isMine) {
 			gameObject.AddComponent<AudioListener> ();
+			myLight = gameObject.GetComponent<Light> ();
 			spk.SpeakerMode = SpeakerMode.Local;
 		}else{
 			spk.SpeakerMode = SpeakerMode.Remote;
 		}
-		myLight = gameObject.GetComponent<Light> ();
 
 	}
 
