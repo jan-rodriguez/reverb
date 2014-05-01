@@ -15,7 +15,7 @@ public class Elevator : Activateable {
 	public Vector3 onDeltaPosition = new Vector3(0f, 10f, 0f);
 	
 	// The time it takes the elevator to move its full range of motion in seconds.
-	public float timeToMoveInTotal = 5f;
+	public float timeToMoveInTotal;
 	
 	// Used as a part of smoothly transitioning the elevator's position.
 	private float moveStartTime;
@@ -42,15 +42,17 @@ public class Elevator : Activateable {
 		
 		// t represents the current ratio (between 0 and 1) between how far we are in time opening
 		// or closing
+		//float t = Mathf.Min(0,(Time.time - moveStartTime) / timeToMoveInTotal);
 		float t = (Time.time - moveStartTime) / timeToMoveInTotal;
-		
-		// Smoothly move the door between open and closed or vice-versa
-		transform.position = new Vector3(
-			Mathf.SmoothStep (transform.position.x, desiredPosition.x, t),
-			Mathf.SmoothStep (transform.position.y, desiredPosition.y, t),
-			Mathf.SmoothStep (transform.position.z, desiredPosition.z, t)
-			);
-		
+
+		if (t >= 0) {
+			// Smoothly move the door between open and closed or vice-versa
+			transform.position = new Vector3(
+				Mathf.SmoothStep (transform.position.x, desiredPosition.x, t),
+				Mathf.SmoothStep (transform.position.y, desiredPosition.y, t),
+				Mathf.SmoothStep (transform.position.z, desiredPosition.z, t)
+				);
+		}
 	}
 	
 	public override void OnActivation() {
@@ -58,7 +60,7 @@ public class Elevator : Activateable {
 	}
 	
 	public override void OnDeactivation() {
-		moveStartTime = Time.time;
+		moveStartTime = Time.time + 1; // Wait a second before going back down.
 	}
 
 
