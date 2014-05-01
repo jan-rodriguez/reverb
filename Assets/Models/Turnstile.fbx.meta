@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 68a0838567223de409aedef109b53eb9
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: curve1detachedCurve3
+    100002: curve1detachedCurve4
+    100004: curve1detachedCurve5
+    100006: curve1detachedCurve6
+    100008: curve1detachedCurve7
+    100010: curve3detachedCurve3
+    100012: curve3detachedCurve4
+    100014: curve3detachedCurve6
+    100016: curve3detachedCurve7
+    100018: curve3detachedCurve8
+    100020: extrudedSurface1
+    100022: extrudedSurface2
+    100024: extrudedSurface3
+    100026: extrudedSurface4
+    100028: filletedCurve1
+    100030: filletedCurve2
+    100032: filletedCurve3
+    100034: filletedCurve4
+    100036: filletedCurve5
+    100038: filletedCurve6
+    100040: filletedCurve7
+    100042: pCylinder1
+    100044: polySurface1
+    100046: transform1
+    100048: transform2
+    100050: transform3
+    100052: transform4
+    100054: //RootNode
+    400000: curve1detachedCurve3
+    400002: curve1detachedCurve4
+    400004: curve1detachedCurve5
+    400006: curve1detachedCurve6
+    400008: curve1detachedCurve7
+    400010: curve3detachedCurve3
+    400012: curve3detachedCurve4
+    400014: curve3detachedCurve6
+    400016: curve3detachedCurve7
+    400018: curve3detachedCurve8
+    400020: extrudedSurface1
+    400022: extrudedSurface2
+    400024: extrudedSurface3
+    400026: extrudedSurface4
+    400028: filletedCurve1
+    400030: filletedCurve2
+    400032: filletedCurve3
+    400034: filletedCurve4
+    400036: filletedCurve5
+    400038: filletedCurve6
+    400040: filletedCurve7
+    400042: pCylinder1
+    400044: polySurface1
+    400046: transform1
+    400048: transform2
+    400050: transform3
+    400052: transform4
+    400054: //RootNode
+    2300000: pCylinder1
+    2300002: polySurface1
+    3300000: pCylinder1
+    3300002: polySurface1
+    4300000: pCylinder1
+    4300002: polySurface1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
