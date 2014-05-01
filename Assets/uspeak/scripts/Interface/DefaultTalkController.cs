@@ -70,16 +70,17 @@ public class DefaultTalkController : MonoBehaviour, IUSpeakTalkController
 
 	public bool ShouldSend()
 	{
-		if( ToggleMode == 0 )
-		{
-			val = Input.GetKey( TriggerKey );
-		}
-		else
-		{
-			if( Input.GetKeyDown( TriggerKey ) )
-				val = !val;
-		}
-		return val;
+		return true;
+//		if( ToggleMode == 0 )
+//		{
+//			val = Input.GetKey( TriggerKey );
+//		}
+//		else
+//		{
+//			if( Input.GetKeyDown( TriggerKey ) )
+//				val = !val;
+//		}
+//		return val;
 	}
 
 	#endregion
