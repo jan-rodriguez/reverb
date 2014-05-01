@@ -396,6 +396,7 @@ public class USpeaker : MonoBehaviour
 		{
 			Debug.LogWarning( "Trying to receive remote audio data without calling InitializeSettings!\nIncoming packet will be ignored" );
 			UpdateSettings();
+			return;
 		}
 
 		if( MuteAll || Mute || ( SpeakerMode == SpeakerMode.Local && !DebugPlayback ) )
