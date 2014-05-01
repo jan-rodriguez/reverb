@@ -33,11 +33,11 @@ public class VoiceSender : MonoBehaviour, ISpeechDataHandler
 		}
 	}
 
-	void Update() {
-		if (audio != null) {
-			UpdateMyLight();
-		}
-	}
+//	void Update() {
+//		if (audio != null) {
+//			UpdateMyLight();
+//		}
+//	}
 
 	#region ISpeechDataHandler Members
 
