@@ -13,7 +13,7 @@ public class NorthBuildingTeleport : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.U)) {
-			teleportee = GameObject.FindGameObjectWithTag ("GameController");
+			teleportee = GameObject.FindGameObjectWithTag ("PlayerPrefab");
 			teleportee.transform.position = this.transform.position;
 		}
 	}
