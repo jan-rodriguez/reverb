@@ -60,8 +60,8 @@ public class MicrophoneInput : MonoBehaviour {
 
 			SetNewLoudness();
 
-			playerLight.intensity = loudness;
-			playerLight.range = loudness * LOUD_TO_RANGE_RATIO;
+			playerLight.intensity = MAX_LIGHT_INTENSITY / 2f;
+			playerLight.range = MAX_LIGHT_INTENSITY / 2f * LOUD_TO_RANGE_RATIO;
 
 			//Play the microphone's input over the network
 			PlaySound ();

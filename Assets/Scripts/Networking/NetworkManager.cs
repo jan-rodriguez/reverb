@@ -7,9 +7,12 @@ public class NetworkManager : MonoBehaviour {
 //	bool isRefreshing = false;
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
+	public bool DisplayingNetworkGUI;
 
 	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
+	readonly Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
+	readonly Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
 
 	private GameObject player1Object;
 	private GameObject player2Object;
@@ -22,7 +25,7 @@ public class NetworkManager : MonoBehaviour {
 	//Display the overlay that the user will see when connecting/creating a server
 	public void OnGUI()
 	{
-
+		DisplayingNetworkGUI = true;
 		//Test display. Just show what type of connection you have
 		if(Network.isServer)
 		{
@@ -43,6 +46,7 @@ public class NetworkManager : MonoBehaviour {
 		//Don't display buttons if we are connected
 		if (Network.isClient || Network.isServer) 
 		{
+			DisplayingNetworkGUI = false;
 			return;
 		}
 
@@ -81,13 +85,13 @@ public class NetworkManager : MonoBehaviour {
 
 		// Spawn player in correct location if they fall off the map
 		if (player1Object != null) {
-			if (player1Object.transform.position.y < 400) {
-				player1Object.transform.position = PLAYER1SPAWN;
+			if (player1Object.transform.position.y < 300) {
+				player1Object.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN);
 			}
 		}
 		if (player2Object != null) {
-			if (player2Object.transform.position.y < 400) {
-				player2Object.transform.position = PLAYER2SPAWN;
+			if (player2Object.transform.position.y < 300) {
+				player2Object.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN);
 			}
 		}
 	}
@@ -131,9 +135,13 @@ public class NetworkManager : MonoBehaviour {
 		{
 			//Spawn player in correct location
 			if( Network.isServer){
-				player1Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER1SPAWN, Quaternion.identity, 0);
+				player1Object = (GameObject)Network.Instantiate (playerPrefab,
+				                                    (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN),
+				                                                 Quaternion.identity, 0);
 			} else {
-				player2Object = (GameObject)Network.Instantiate (playerPrefab, PLAYER2SPAWN, Quaternion.identity, 0);
+				player2Object = (GameObject)Network.Instantiate (playerPrefab, 
+				                                    (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN),
+				                                    Quaternion.identity, 0);
 			}
 		}else{
 			Debug.Log("error getting prefab");
@@ -176,6 +184,18 @@ public class NetworkManager : MonoBehaviour {
 		if(Network.isClient)
 		{
 			Network.Disconnect(200);
+		}
+	}
+
+	public GameObject Player1Object {
+		get {
+			return player1Object;
+		}
+	}
+
+	public GameObject Player2Object {
+		get {
+			return player2Object;
 		}
 	}
 

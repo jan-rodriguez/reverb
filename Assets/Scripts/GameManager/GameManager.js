@@ -3,7 +3,7 @@
 
 function Start () {
 
-	Screen.showCursor = true;
+	Screen.showCursor = false;
 
 }
 
@@ -15,5 +15,4 @@ function Update () {
 		Screen.lockCursor = !Screen.lockCursor;
 	
 	}
-
 }

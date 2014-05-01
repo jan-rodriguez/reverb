@@ -28,12 +28,12 @@ public class Elevator : Activateable {
 	public void FixedUpdate() {
 
 		// Activation conditions
-		if (switch1.activated && switch2.activated && !activated) {
+		if (switch1.activated && /*switch2.activated &&*/ !activated) {
 			Activate ();
 		}
 
 		// Deactivation conditions
-		if ((!switch1.activated || !switch2.activated) && activated) {
+		if ((!switch1.activated/* || !switch2.activated*/) && activated) {
 			Deactivate ();
 		}
 		
