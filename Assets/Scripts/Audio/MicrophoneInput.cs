@@ -13,7 +13,6 @@ public class MicrophoneInput : MonoBehaviour {
 	private const float MAX_LIGHT_INTENSITY = 2.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
-	private float otherLoudness = 0;
 
 	//Objects needed to be updated
 	private GameObject otherPlayerCam;
@@ -61,8 +60,8 @@ public class MicrophoneInput : MonoBehaviour {
 
 			SetNewLoudness();
 
-			playerLight.intensity = loudness;
-			playerLight.range = loudness * LOUD_TO_RANGE_RATIO;
+			playerLight.intensity = MAX_LIGHT_INTENSITY / 2f;
+			playerLight.range = MAX_LIGHT_INTENSITY / 2f * LOUD_TO_RANGE_RATIO;
 
 			//Play the microphone's input over the network
 			PlaySound ();
