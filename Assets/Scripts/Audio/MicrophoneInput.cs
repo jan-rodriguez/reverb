@@ -8,10 +8,9 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float MY_SENSITIVITY = 10;
-	private const float OTHER_PLAYER_SENSITIVITY = 500;
+	private const float MY_SENSITIVITY = 25;
 	private const float MIN_LIGHT_DECREASE = 1.0f;
-	private const float MAX_LIGHT_INTENSITY = 1.0f;
+	private const float MAX_LIGHT_INTENSITY = 2.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
 	private float otherLoudness = 0;
@@ -135,9 +134,12 @@ public class MicrophoneInput : MonoBehaviour {
 		if (otherPlayerLight == null) {
 			SetOtherPlayerCam();
 		}
-	
+		if (intensity > MAX_LIGHT_INTENSITY) {
+
+			intensity = MAX_LIGHT_INTENSITY;
+		}
 		//Update the other player's light
-		otherPlayerLight.intensity = MY_SENSITIVITY * intensity;
+		otherPlayerLight.intensity = intensity;
 		otherPlayerLight.range = intensity * LOUD_TO_RANGE_RATIO;
 		
 	}
@@ -145,10 +147,7 @@ public class MicrophoneInput : MonoBehaviour {
 	//Set the other player's camera
 	private void SetOtherPlayerCam() {
 		if (otherPlayerCam == null) {
-			foreach (GameObject playerCam in GameObject.FindGameObjectsWithTag ("Player")) {
-				//Found the player camera and can define it
-				otherPlayerCam = playerCam;
-			}
+			otherPlayerCam = GameObject.FindGameObjectWithTag ("Player");
 			otherPlayerLight = otherPlayerCam.GetComponent<Light>();
 		}
 	}

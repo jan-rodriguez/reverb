@@ -8,7 +8,7 @@ public class ElevatorSwitch : Activateable {
 	public Light elevatorSwitchLight;
 	public float inactiveGlowIntensity = 0.5f;
 	public float activeGlowIntensity = 1f;
-
+	
 	// Use this for initialization
 	void Start () {
 
@@ -20,6 +20,13 @@ public class ElevatorSwitch : Activateable {
 	}
 
 	void OnTriggerEnter (Collider collider) {
+
+		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {	
+			collider.transform.parent = gameObject.transform.root;
+			//Let other player know that you set your new parent
+			collider.networkView.RPC("SetOtherPlayerParent", RPCMode.Others, gameObject.transform.root.name);
+		}
+
 		if (colliders.Count == 0) { // If this is the first collider to enter, activate
 			activated = true;
 			OnActivation ();
@@ -33,6 +40,11 @@ public class ElevatorSwitch : Activateable {
 			OnDeactivation ();
 		}
 		colliders.Remove (collider);
+
+		if (collider.transform.tag == "PlayerPrefab" && collider.networkView.isMine) {	
+			collider.networkView.RPC("RemoveOtherPlayerParent", RPCMode.Others, gameObject.transform.root.name);
+			collider.transform.parent = null;
+		}
 	}
 
 	public override void OnActivation() {
