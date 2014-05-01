@@ -178,13 +178,13 @@ private var tr : Transform;
 
 private var controller : CharacterController;
 
-//private var walkLight : Light;
+private var walkLight : Light;
 
 private final var LIGHTSENSITIVITY : float = .2;
 
 function Awake () {
 	controller = GetComponent (CharacterController);
-	//walkLight = GetComponent (Light);
+	walkLight = GetComponent (Light);
 	tr = transform;
 }
 
@@ -227,7 +227,7 @@ private function UpdateFunction () {
 	// We always want the movement to be framerate independent.  Multiplying by Time.deltaTime does this.
 	var currentMovementOffset : Vector3 = velocity * Time.deltaTime;
 	
-	// Find out how much we need to push towards the ground to avoid losing grounding
+	// Find out how much we need to push towards the ground to avoid loosing grouning
 	// when walking down a step or over a sharp change in slope.
 	var pushDownOffset : float = Mathf.Max(controller.stepOffset, Vector3(currentMovementOffset.x, 0, currentMovementOffset.z).magnitude);
 	if (grounded)
@@ -256,10 +256,8 @@ private function UpdateFunction () {
 	var oldHVelocity : Vector3 = new Vector3(velocity.x, 0, velocity.z);
 	movement.velocity = (tr.position - lastPosition) / Time.deltaTime;
 	
-	/*
 	var walkingSpeed = movement.velocity.z * movement.velocity.z + movement.velocity.x * movement.velocity.x;
-	walkLight.intensity = Mathf.Sqrt(walkingSpeed) * LIGHTSENSITIVITY;
-	*/
+	//walkLight.intensity = Mathf.Sqrt(walkingSpeed) * LIGHTSENSITIVITY;
 	
 	var newHVelocity : Vector3 = new Vector3(movement.velocity.x, 0, movement.velocity.z);
 	
@@ -286,7 +284,7 @@ private function UpdateFunction () {
 		}
 	}
 	
-	// We were grounded but just lost grounding
+	// We were grounded but just loosed grounding
 	if (grounded && !IsGroundedTest()) {
 		grounded = false;
 		
