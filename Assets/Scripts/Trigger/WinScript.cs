@@ -37,6 +37,13 @@ public class WinScript : MonoBehaviour {
 
 			yield return null;
 		}
+
+		StartNextLevel ();
+	}
+
+	void StartNextLevel () {
+		Application.LoadLevel ("CityStage");
+		NetworkManager.SpawnPlayer ();
 	}
 	
 }

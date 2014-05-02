@@ -9,17 +9,21 @@ public class NetworkManager : MonoBehaviour {
 	HostData[] hostData;
 	public bool DisplayingNetworkGUI;
 
-	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
-	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
-	readonly Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
-	readonly Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
+	readonly static Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
+	readonly static Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
+	readonly static Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
+	readonly static Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
 
-	private GameObject player1Object;
-	private GameObject player2Object;
+	private static GameObject player1Object;
+	private static GameObject player2Object;
 	
 	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
+		//If we are in city stage and already connected
+		if (Application.loadedLevelName == "CityStage" && (Network.isClient || Network.isServer) ) {
+			SpawnPlayer();
+		}
 	}
 
 	//Display the overlay that the user will see when connecting/creating a server
@@ -126,7 +130,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	//Spawn a player on top of the building
-	private void SpawnPlayer()
+	public static void SpawnPlayer()
 	{
 		Debug.Log ("Spawning player");
 
