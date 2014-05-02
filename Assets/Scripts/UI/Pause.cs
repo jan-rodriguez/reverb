@@ -59,16 +59,19 @@ public class Pause : MonoBehaviour {
 		currentMenu = menu;
 	}
 
+	/// <summary>
+	/// This is the script for the actual Pause GUI.
+	/// </summary>
 	public void PausedMenu() {
 		GUI.Label (new Rect(0, 0, Screen.width, Screen.height), "Paused", titleStyle);
-		if(GUI.Button(new Rect(10, 70, 200, 50), "Options", buttonStyle)) {
+		if(GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "Options", buttonStyle)) {
 			Display("Options");
 		}
 	}
 
 	public void OptionsMenu() {
 		GUI.Label (new Rect(0, 0, Screen.width, Screen.height), "Options", titleStyle);
-		if(GUI.Button(new Rect(10, 70, 200, 50), "Back", buttonStyle)) {
+		if(GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "Back", buttonStyle)) {
 			Display("Paused");
 		}
 	}
