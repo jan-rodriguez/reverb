@@ -3,7 +3,8 @@
 
 function Start () {
 
-	Screen.showCursor = false;
+	Screen.showCursor = true;
+	Screen.lockCursor = false;
 
 }
 

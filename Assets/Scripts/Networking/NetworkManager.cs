@@ -73,7 +73,6 @@ public class NetworkManager : MonoBehaviour {
 				//Create buttons for each server
 				if(GUI.Button( new Rect(Screen.width/2, 65f + (30f * i), 300f, 30f), hostData[i].gameName ) )
 				{
-					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
 
@@ -109,7 +108,6 @@ public class NetworkManager : MonoBehaviour {
 	//Get list of hosts currently running our game
 	public IEnumerator RefreshHostList()
 	{
-		Debug.Log ("Refreshing...");
 		MasterServer.RequestHostList (registeredGameName);
 
 		float timeEnd = Time.time + refreshRequestLength;
@@ -131,7 +129,6 @@ public class NetworkManager : MonoBehaviour {
 	//Spawn a player on top of the building
 	public void SpawnPlayer()
 	{
-		Debug.Log ("Spawning player");
 
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
@@ -157,7 +154,6 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnServerInitialized()
 	{
-		Debug.Log ("Server has been initialized");
 		SpawnPlayer ();
 	}
 
@@ -165,7 +161,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		if (msEvent == MasterServerEvent.RegistrationSucceeded)
 		{
-			Debug.Log ("Registration Successful");
+			//Debug.Log ("Registration Successful");
 		}
 	}
 
