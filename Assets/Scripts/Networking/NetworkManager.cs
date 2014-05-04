@@ -17,7 +17,6 @@ public class NetworkManager : MonoBehaviour {
 	private static GameObject player1Object;
 	private static GameObject player2Object;
 	
-	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
 		//If we are in city stage and already connected
@@ -102,8 +101,8 @@ public class NetworkManager : MonoBehaviour {
 
 	private void StartServer()
 	{
-		//Initialize server with up to 2 players, port 25002, and no NAT
-		Network.InitializeServer(2, 23466, false);
+		//Initialize server with up to 1 players, port 25002, and no NAT
+		Network.InitializeServer(1, 23466, false);
 		MasterServer.RegisterHost(registeredGameName, "Reverb Server", "Just testing");
 	}
 
@@ -130,7 +129,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	//Spawn a player on top of the building
-	public static void SpawnPlayer()
+	public void SpawnPlayer()
 	{
 		Debug.Log ("Spawning player");
 
@@ -150,6 +149,8 @@ public class NetworkManager : MonoBehaviour {
 		}else{
 			Debug.Log("error getting prefab");
 		}
+
+		GameObject.Destroy (gameObject);
 	}
 
 	//----------------------------Call Backs from client and server---------------------------
