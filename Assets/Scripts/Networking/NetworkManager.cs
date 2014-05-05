@@ -37,12 +37,7 @@ public class NetworkManager : MonoBehaviour {
 		{
 			GUILayout.Label("Running as a client");
 
-			//Add button for clients to start server
-			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
-			{
-				SpawnPlayer();
-				gameObject.camera.enabled = false;
-			}
+			SpawnPlayer();
 		}
 
 
@@ -54,13 +49,13 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		//Start server button
-		if (GUI.Button (new Rect (25f, 25f, 150f, 30f), "Start New Server")) 
+		if (GUI.Button (new Rect (Screen.width / 2 , 25f, 150f, 30f), "Start New Server")) 
 		{
 			StartServer();
 		}
 
 		//Refresing visible servers
-		if (GUI.Button (new Rect (25f, 65f, 150f, 30f), "Refresh Server List")) 
+		if (GUI.Button (new Rect (Screen.width / 2 , 65f, 150f, 30f), "Refresh Server List")) 
 		{
 			StartCoroutine("RefreshHostList");
 		}
