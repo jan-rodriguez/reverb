@@ -25,7 +25,7 @@ public class TurnstileSwitch : Activateable {
 	
 	[RPC]
 	public void ActivateTurnstile(){
-			turnstile.Open();
+			turnstile.Rotate();
 	}
 	
 	public override void WhileActivated() {
