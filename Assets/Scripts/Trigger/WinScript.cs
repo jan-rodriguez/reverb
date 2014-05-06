@@ -42,7 +42,8 @@ public class WinScript : MonoBehaviour {
 	}
 
 	void StartNextLevel () {
-		Application.LoadLevel ("CityStage");
+		
+		Application.LoadLevelAsync ("CityStage");
 	}
 	
 }
