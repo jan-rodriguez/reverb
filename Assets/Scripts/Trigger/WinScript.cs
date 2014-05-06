@@ -46,7 +46,7 @@ public class WinScript : MonoBehaviour {
 	}
 
 	[RPC]
-	void LoadLevel (string level)
+	IEnumerator LoadLevel (string level)
 	{
 		
 		// There is no reason to send any more data over the network on the default channel,
