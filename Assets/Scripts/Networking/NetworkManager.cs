@@ -125,6 +125,8 @@ public class NetworkManager : MonoBehaviour {
 	public void SpawnPlayer()
 	{
 
+		Debug.Log ("Spawning player");
+
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		if(playerPrefab != null)
 		{
