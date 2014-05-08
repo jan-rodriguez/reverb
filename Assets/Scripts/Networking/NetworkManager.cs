@@ -4,7 +4,7 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour {
 
 	string registeredGameName = "Reverb_TestServer_Tutorial";
-//	bool isRefreshing = false;
+	bool hasSpawned = false;
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
 	public bool DisplayingNetworkGUI;
@@ -32,7 +32,6 @@ public class NetworkManager : MonoBehaviour {
 		//Test display. Just show what type of connection you have
 		if(Network.isServer)
 		{
-			SpawnPlayer();
 			GUILayout.Label("Running as a server.");
 		}else if(Network.isClient)
 		{
@@ -125,34 +124,37 @@ public class NetworkManager : MonoBehaviour {
 	//Spawn a player on top of the building
 	public void SpawnPlayer()
 	{
-
-		Debug.Log ("Spawning player");
-
-		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
-		if(playerPrefab != null)
-		{
-			//Spawn player in correct location
-			if( Network.isServer){
-				player1Object = (GameObject)Network.Instantiate (playerPrefab,
-				                                    (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN),
-				                                                 Quaternion.identity, 0);
-			} else {
-				player2Object = (GameObject)Network.Instantiate (playerPrefab, 
-				                                    (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN),
-				                                    Quaternion.identity, 0);
+		if (!hasSpawned) {
+			hasSpawned = true;
+			Debug.Log ("Spawning player");
+			
+			Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
+			if(playerPrefab != null)
+			{
+				//Spawn player in correct location
+				if( Network.isServer){
+					player1Object = (GameObject)Network.Instantiate (playerPrefab,
+					                                                 (Application.loadedLevelName == "CityStage" ? PLAYER1CITYSPAWN : PLAYER1SPAWN),
+					                                                 Quaternion.identity, 0);
+				} else {
+					player2Object = (GameObject)Network.Instantiate (playerPrefab, 
+					                                                 (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN),
+					                                                 Quaternion.identity, 0);
+				}
+			}else{
+				Debug.Log("error getting prefab");
 			}
-		}else{
-			Debug.Log("error getting prefab");
+			
+			GameObject.Destroy (gameObject);
 		}
 
-		GameObject.Destroy (gameObject);
 	}
 
 	//----------------------------Call Backs from client and server---------------------------
 
 	void OnServerInitialized()
 	{
-//		SpawnPlayer ();
+		SpawnPlayer ();
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
