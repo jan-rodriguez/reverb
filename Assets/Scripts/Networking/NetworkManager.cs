@@ -9,17 +9,20 @@ public class NetworkManager : MonoBehaviour {
 	HostData[] hostData;
 	public bool DisplayingNetworkGUI;
 
-	readonly Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
-	readonly Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
-	readonly Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
-	readonly Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
+	readonly static Vector3 PLAYER1SPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
+	readonly static Vector3 PLAYER2SPAWN = new Vector3 (113.32864f, 464.0021f, 171.2229f);
+	readonly static Vector3 PLAYER1CITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
+	readonly static Vector3 PLAYER2CITYSPAWN = new Vector3 (91.95948f, 335.4092f, 212.8238f);
 
-	private GameObject player1Object;
-	private GameObject player2Object;
+	private static GameObject player1Object;
+	private static GameObject player2Object;
 	
-	//TODO: get this to be the server we setup
 	public void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
+		//If we are in city stage and already connected
+		if (Application.loadedLevelName == "CityStage" && (Network.isClient || Network.isServer) ) {
+			SpawnPlayer();
+		}
 	}
 
 	//Display the overlay that the user will see when connecting/creating a server
@@ -34,12 +37,7 @@ public class NetworkManager : MonoBehaviour {
 		{
 			GUILayout.Label("Running as a client");
 
-			//Add button for clients to start server
-			if(GUI.Button(new Rect(Screen.width/2 - 75f, 25f, 150f, 30f), "Spawn"))
-			{
-				SpawnPlayer();
-				gameObject.camera.enabled = false;
-			}
+			SpawnPlayer();
 		}
 
 
@@ -51,13 +49,13 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		//Start server button
-		if (GUI.Button (new Rect (25f, 25f, 150f, 30f), "Start New Server")) 
+		if (GUI.Button (new Rect (Screen.width / 2 , 25f, 150f, 30f), "Start New Server")) 
 		{
 			StartServer();
 		}
 
 		//Refresing visible servers
-		if (GUI.Button (new Rect (25f, 65f, 150f, 30f), "Refresh Server List")) 
+		if (GUI.Button (new Rect (Screen.width / 2 , 65f, 150f, 30f), "Refresh Server List")) 
 		{
 			StartCoroutine("RefreshHostList");
 		}
@@ -70,7 +68,6 @@ public class NetworkManager : MonoBehaviour {
 				//Create buttons for each server
 				if(GUI.Button( new Rect(Screen.width/2, 65f + (30f * i), 300f, 30f), hostData[i].gameName ) )
 				{
-					Debug.Log("Connecting to server");
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
 
@@ -98,15 +95,14 @@ public class NetworkManager : MonoBehaviour {
 
 	private void StartServer()
 	{
-		//Initialize server with up to 2 players, port 25002, and no NAT
-		Network.InitializeServer(2, 23466, false);
+		//Initialize server with up to 1 players, port 25002, and no NAT
+		Network.InitializeServer(1, 23466, false);
 		MasterServer.RegisterHost(registeredGameName, "Reverb Server", "Just testing");
 	}
 
 	//Get list of hosts currently running our game
 	public IEnumerator RefreshHostList()
 	{
-		Debug.Log ("Refreshing...");
 		MasterServer.RequestHostList (registeredGameName);
 
 		float timeEnd = Time.time + refreshRequestLength;
@@ -126,8 +122,9 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	//Spawn a player on top of the building
-	private void SpawnPlayer()
+	public void SpawnPlayer()
 	{
+
 		Debug.Log ("Spawning player");
 
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
@@ -146,13 +143,14 @@ public class NetworkManager : MonoBehaviour {
 		}else{
 			Debug.Log("error getting prefab");
 		}
+
+		GameObject.Destroy (gameObject);
 	}
 
 	//----------------------------Call Backs from client and server---------------------------
 
 	void OnServerInitialized()
 	{
-		Debug.Log ("Server has been initialized");
 		SpawnPlayer ();
 	}
 
@@ -160,7 +158,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		if (msEvent == MasterServerEvent.RegistrationSucceeded)
 		{
-			Debug.Log ("Registration Successful");
+			//Debug.Log ("Registration Successful");
 		}
 	}
 

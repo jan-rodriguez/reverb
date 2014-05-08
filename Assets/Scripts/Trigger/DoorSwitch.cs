@@ -9,11 +9,18 @@ public class DoorSwitch : Activateable {
 	public Light doorSwitchLight;
 	public float activatedLightIntensity = 2f;
 	public float deactivatedLightIntensity = 1f;
+	public Color activeColor;
+	
+	private Color inactiveColor;
 
+	// Use this for initialization
+	void Start () {
+		inactiveColor = doorSwitchLight.color;
+		//activeColor = new Color(0,0.5,1);
+	}
 
 	public override void OnActivation() {
 		networkView.RPC ("ActivateDoor", RPCMode.All);
-
 	}
 
 	[RPC]
@@ -23,6 +30,7 @@ public class DoorSwitch : Activateable {
 			// switch to deactivated lighting
 			if (doorSwitchLight != null) {
 				doorSwitchLight.intensity = deactivatedLightIntensity;
+				doorSwitchLight.color = inactiveColor;
 			}
 		}
 		else if (door.IsClosed) {
@@ -30,6 +38,7 @@ public class DoorSwitch : Activateable {
 			// switch to activated lighting
 			if (doorSwitchLight != null) {
 				doorSwitchLight.intensity = activatedLightIntensity;
+				doorSwitchLight.color = activeColor;
 			}
 		}
 	}
