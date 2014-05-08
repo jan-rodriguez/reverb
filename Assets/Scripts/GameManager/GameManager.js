@@ -1,6 +1,5 @@
 ﻿#pragma strict
 
-
 function Start () {
 
 	Screen.showCursor = true;
@@ -10,10 +9,11 @@ function Start () {
 
 function Update () {
 
-	if(Input.GetKeyDown("escape")) {
+	/*if(Input.GetKeyDown("escape")) {
 	
-		Screen.showCursor = !Screen.showCursor;
-		Screen.lockCursor = !Screen.lockCursor;
+	    Screen.showCursor = !Screen.showCursor;
+	    Screen.lockCursor = !Screen.lockCursor;
 	
-	}
+	}*/
+
 }

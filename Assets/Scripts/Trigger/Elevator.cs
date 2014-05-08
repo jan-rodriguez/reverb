@@ -28,13 +28,26 @@ public class Elevator : Activateable {
 	public void FixedUpdate() {
 
 		// Activation conditions
-		if (switch1.activated && switch2.activated && !activated) {
-			Activate ();
+        if (switch1.activated && !activated) {
+
+            if (((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).twoPlayers && switch2.activated) {
+
+                Activate();
+
+            }
+
+            else {
+
+                Activate();
+
+            }
 		}
 
 		// Deactivation conditions
-		if ((!switch1.activated || !switch2.activated) && activated) {
-			Deactivate ();
+        if ((!switch1.activated) && activated || (((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).twoPlayers && activated && !switch2.activated)) {
+
+            Deactivate();
+
 		}
 		
 		// Our desired position is either closed position or closed position + open delta position

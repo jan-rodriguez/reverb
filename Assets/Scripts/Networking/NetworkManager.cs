@@ -17,12 +17,8 @@ public class NetworkManager : MonoBehaviour {
 	private static GameObject player1Object;
 	private static GameObject player2Object;
 	
-	public void Start() {
+	void Start() {
 		MasterServer.ipAddress = "18.250.7.56";
-		//If we are in city stage and already connected
-		if (Application.loadedLevelName == "CityStage" && (Network.isClient || Network.isServer) ) {
-			SpawnPlayer();
-		}
 	}
 
 	//Display the overlay that the user will see when connecting/creating a server
@@ -51,6 +47,7 @@ public class NetworkManager : MonoBehaviour {
 		//Start server button
 		if (GUI.Button (new Rect (Screen.width / 2 , 25f, 150f, 30f), "Start New Server")) 
 		{
+            ((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).pausedOrMenu = false;
 			StartServer();
 		}
 
@@ -68,6 +65,8 @@ public class NetworkManager : MonoBehaviour {
 				//Create buttons for each server
 				if(GUI.Button( new Rect(Screen.width/2, 65f + (30f * i), 300f, 30f), hostData[i].gameName ) )
 				{
+                    ((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).pausedOrMenu = false;
+
 					//Connect to the button clicked
 					Network.Connect (hostData[i]);
 
@@ -78,7 +77,10 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	// Respawn players if they fall
-	void FixedUpdate() {
+    void FixedUpdate() {
+
+        if (!this.CompareTag("Player"))
+            this.tag = "Player";
 
 		// Spawn player in correct location if they fall off the map
 		if (player1Object != null) {
@@ -87,6 +89,17 @@ public class NetworkManager : MonoBehaviour {
 			}
 		}
 		if (player2Object != null) {
+
+            if (player1Object != null) {
+
+                if (((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).twoPlayers == false) {
+
+                    ((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).twoPlayers = true;
+
+                }
+
+            }
+
 			if (player2Object.transform.position.y < 300) {
 				player2Object.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYER2CITYSPAWN : PLAYER2SPAWN);
 			}
@@ -143,6 +156,8 @@ public class NetworkManager : MonoBehaviour {
 		}else{
 			Debug.Log("error getting prefab");
 		}
+
+        ((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerC>()).spawnedPlayer = true;
 
 		GameObject.Destroy (gameObject);
 	}

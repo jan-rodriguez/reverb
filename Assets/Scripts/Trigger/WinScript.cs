@@ -16,7 +16,7 @@ public class WinScript : MonoBehaviour {
 		if (collider.transform.name == "FirstPersonController(Clone)") {
 			playersInside ++;
 			//If both players are in the platform activate win animations
-			if ( playersInside == 2 ) {
+            if (playersInside == (((GameManagerC)GameObject.FindGameObjectWithTag("GameManager").GetComponent("GameManagerC")).twoPlayers ? 2 : 1)) {
 				StartCoroutine("PlayWinAnimation");
 			}
 		}
