@@ -32,6 +32,7 @@ public class NetworkManager : MonoBehaviour {
 		//Test display. Just show what type of connection you have
 		if(Network.isServer)
 		{
+			SpawnPlayer();
 			GUILayout.Label("Running as a server.");
 		}else if(Network.isClient)
 		{
@@ -151,7 +152,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnServerInitialized()
 	{
-		SpawnPlayer ();
+//		SpawnPlayer ();
 	}
 
 	void OnMasterServerEvent(MasterServerEvent msEvent)
