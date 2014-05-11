@@ -32,10 +32,6 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
-		//Don't update if the character isn't yours
-		if (!networkView.isMine) {
-			return;
-		}
 
 		if (Screen.showCursor) {
 
@@ -69,11 +65,6 @@ public class MouseLook : MonoBehaviour {
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
 
-		if (!this.networkView.isMine) {
-			if(this.camera != null){
-				this.camera.enabled = false;
-			}
-		}
 	}
 
 	void Awake() 

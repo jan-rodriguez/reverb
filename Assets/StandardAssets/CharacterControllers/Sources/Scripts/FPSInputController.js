@@ -8,9 +8,6 @@ function Awake () {
 
 // Update is called once per frame
 function Update () {
-	if(!networkView.isMine) {
-		return;
-	}
 	if(Screen.showCursor) {
 		return;
 	}
