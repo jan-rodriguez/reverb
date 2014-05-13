@@ -26,7 +26,6 @@ public class Activator : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit)) {
 				Activateable toActivate = hit.transform.GetComponent<Activateable>();
 				if (toActivate != null && toActivate.type == Activateable.TRIGGERTYPE.USE) {
-					Debug.Log ("Activated " + toActivate.name);
 					toActivate.Activate();
 				}
 			}

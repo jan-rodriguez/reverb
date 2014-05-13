@@ -8,36 +8,32 @@ using System;
 
 public class MicrophoneInput : MonoBehaviour {
 
-	private const float MY_SENSITIVITY = 25;
+	private const float MY_SENSITIVITY = 25f;
 	private const float MIN_LIGHT_DECREASE = 1.0f;
 	private const float MAX_LIGHT_INTENSITY = 2.0f;
 	private const float LOUD_TO_RANGE_RATIO = 20.0f;
 	private float loudness = 0;
 
 	//Objects needed to be updated
-	private GameObject otherPlayerCam;
-	private Light otherPlayerLight;
 	private Light playerLight;
 	
-	public void Start() {
-		if (networkView.isMine) {
-			audio.clip = Microphone.Start (null, true, 10, 44100);
-			audio.loop = true;
+	public void Awake() {
 
-			this.tag = null;
-
-			//Find the player's game objects
-			playerLight = this.GetComponent<Light> ();
-
-			gameObject.AddComponent<AudioListener> ();
-
-			while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
-			} // Wait until the recording has started
-
-			audio.Play (); // Play the audio source!
-			audio.mute = true;
-
+		//Player doesn't have mic destroy game object
+		if (Microphone.devices.Length == 0) {
+			GameObject.Destroy(gameObject);
 		}
+		audio.clip = Microphone.Start (null, true, 10, 44100);
+		audio.loop = true;
+
+		//Find the player's game objects
+		playerLight = this.GetComponent<Light> ();
+
+		while (!(Microphone.GetPosition(Microphone.devices[0].ToString()) > 0)) {
+		} // Wait until the recording has started
+
+		audio.Play (); // Play the audio source!
+		audio.mute = true;
 
 	}
 	
@@ -56,16 +52,11 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 
 	public void Update(){
-		if (networkView.isMine) {
 
-			SetNewLoudness();
+		SetNewLoudness();
 
-			playerLight.intensity = MAX_LIGHT_INTENSITY / 2f;
-			playerLight.range = MAX_LIGHT_INTENSITY / 2f * LOUD_TO_RANGE_RATIO;
-
-			//Play the microphone's input over the network
-			PlaySound ();
-		}
+		playerLight.intensity = loudness;
+		playerLight.range = loudness * LOUD_TO_RANGE_RATIO;
 
 	}
 
@@ -89,20 +80,6 @@ public class MicrophoneInput : MonoBehaviour {
 
 	}
 
-	public void PlaySound() {
-		if(networkView.isMine) {
-			float[] data = new float[2048];
-			audio.GetOutputData(data,0);
-
-			float[] intensity = new float[1];
-			intensity[0] = loudness;
-
-			networkView.RPC("PlayNetworkedSound", RPCMode.Others, data);
-			networkView.RPC("UpdateOtherPlayerLight", RPCMode.Others, intensity);
-		}
-
-	}
-
 	public float GetAverage(float[] data){
 		float a = 0;
 
@@ -112,44 +89,5 @@ public class MicrophoneInput : MonoBehaviour {
 
 		return a / data.Length;
 	}
-
-	//Play the sound from the other player on your client
-	[RPC]
-	private void PlayNetworkedSound(float[] soundBite){
-
-		AudioClip audioClip = AudioClip.Create("testSound", soundBite.Length, 1, 44100, true, false);
-		audioClip.SetData (soundBite, 0);
-
-		AudioSource.PlayClipAtPoint (audioClip, this.transform.position);
-
-	}
-
-	//Make the sound 
-	[RPC]
-	private void UpdateOtherPlayerLight(float[] intensityArr){
-
-		float intensity = intensityArr [0];
-
-		if (otherPlayerLight == null) {
-			SetOtherPlayerCam();
-		}
-		if (intensity > MAX_LIGHT_INTENSITY) {
-
-			intensity = MAX_LIGHT_INTENSITY;
-		}
-		//Update the other player's light
-		otherPlayerLight.intensity = intensity;
-		otherPlayerLight.range = intensity * LOUD_TO_RANGE_RATIO;
-		
-	}
-
-	//Set the other player's camera
-	private void SetOtherPlayerCam() {
-		if (otherPlayerCam == null) {
-			otherPlayerCam = GameObject.FindGameObjectWithTag ("Player");
-			otherPlayerLight = otherPlayerCam.GetComponent<Light>();
-		}
-	}
-
 
 }
