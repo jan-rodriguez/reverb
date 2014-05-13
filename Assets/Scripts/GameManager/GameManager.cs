@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
 		
 		// Spawn player in correct location if they fall off the map
 		if (player != null) {
-			if (player.transform.position.y < 400) {
+			if (player.transform.position.y < 300) {
 				player.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYERCITYSPAWN : PLAYERSPAWN);
 			}
 		}
