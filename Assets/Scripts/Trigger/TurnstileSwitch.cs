@@ -20,13 +20,14 @@ public class TurnstileSwitch : Activateable {
 	}
 	
 	public override void OnActivation() {
-		networkView.RPC ("ActivateTurnstile", RPCMode.All);
+		turnstile.Open ();
 	}
-	
-	[RPC]
+
+	/*
 	public void ActivateTurnstile(){
 			turnstile.Open();
 	}
+	*/
 	
 	public override void WhileActivated() {
 		
