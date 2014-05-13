@@ -28,9 +28,9 @@ public class Sign : Activateable {
 
         if (GUIEnabled) {
 
-            GUI.TextArea(new Rect(Screen.width / 4, Screen.height / 4, 2 * Screen.width / 4, 2 * Screen.height / 4), text);
+            GUI.Label(new Rect(Screen.width / 4, Screen.height / 4, 2 * Screen.width / 4, 2 * Screen.height / 4), text, "textfield");
 
-            GUI.TextArea(new Rect(Screen.width / 4, 3 * Screen.height / 4, 2 * Screen.width / 4, 30), "Press Q to close.");
+            GUI.Label(new Rect(Screen.width / 4, 3 * Screen.height / 4, 2 * Screen.width / 4, 30), "Press Q to close.", "textfield");
 
             if (Input.GetKeyDown("q")) {
                 GUIEnabled = false;
