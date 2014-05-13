@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	GameObject player;
 	readonly static Vector3 PLAYERSPAWN = new Vector3 (56.66432f, 464.0021f, 171.2229f);
 	readonly static Vector3 PLAYERCITYSPAWN = new Vector3 (86.56039f, 335.4092f, 210.7125f);
 	private bool spawned = false;
@@ -42,7 +43,18 @@ public class GameManager : MonoBehaviour {
 		Screen.lockCursor = true;
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
 		Vector3 playerSpawnLocation = (Application.loadedLevelName == "CityStage") ? PLAYERCITYSPAWN : PLAYERSPAWN;
-		GameObject.Instantiate (playerPrefab, playerSpawnLocation, Quaternion.identity);
+		player = GameObject.Instantiate (playerPrefab, playerSpawnLocation, Quaternion.identity);
 		spawned = true;
+	}
+
+	// Respawn players if they fall
+	void FixedUpdate() {
+		
+		// Spawn player in correct location if they fall off the map
+		if (player != null) {
+			if (player.transform.position.y < 300) {
+				player.transform.position = (Application.loadedLevelName == "CityStage" ? PLAYERCITYSPAWN : PLAYERSPAWN);
+			}
+		}
 	}
 }
