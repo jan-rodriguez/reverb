@@ -14,7 +14,7 @@ public class EndgameTeleport : MonoBehaviour {
 	void Update () {
 
         if (Input.GetKey(KeyCode.O)) {
-            teleportee = GameObject.FindGameObjectWithTag("GameController");
+            teleportee = GameObject.FindGameObjectWithTag("PlayerPrefab");
             teleportee.transform.position = this.transform.position;
         }
 	

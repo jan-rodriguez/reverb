@@ -13,7 +13,7 @@ public class YRoomTeleport : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.Y)) {
-			teleportee = GameObject.FindGameObjectWithTag ("GameController");
+			teleportee = GameObject.FindGameObjectWithTag ("PlayerPrefab");
 			teleportee.transform.position = this.transform.position;
 		}
 	

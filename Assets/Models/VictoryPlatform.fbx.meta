@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 86bb42b8007f35d40974fa20fdd7145a
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: bevelPolygon1
+    100002: bevelPolygon17
+    100004: bevelPolygon17 1
+    100006: bevelPolygon18
+    100008: bevelPolygon18 1
+    100010: bevelPolygon19
+    100012: bevelPolygon19 1
+    100014: bevelPolygon2
+    100016: bevelPolygon20
+    100018: bevelPolygon20 1
+    100020: bevelPolygon21
+    100022: bevelPolygon21 1
+    100024: bevelPolygon22
+    100026: bevelPolygon22 1
+    100028: bevelPolygon23
+    100030: bevelPolygon23 1
+    100032: bevelPolygon24
+    100034: bevelPolygon24 1
+    100036: bevelPolygon25
+    100038: bevelPolygon25 1
+    100040: bevelPolygon26
+    100042: bevelPolygon26 1
+    100044: bevelPolygon27
+    100046: bevelPolygon27 1
+    100048: bevelPolygon28
+    100050: bevelPolygon28 1
+    100052: bevelPolygon29
+    100054: bevelPolygon29 1
+    100056: group1
+    100058: group2
+    100060: pCube10
+    100062: pCube11
+    100064: pCube3
+    100066: pCube4
+    100068: pCube5
+    100070: pCube6
+    100072: pCube7
+    100074: pCube8
+    100076: pCube9
+    100078: pCylinder1
+    100080: pCylinder2
+    100082: pCylinder3
+    100084: pCylinder4
+    100086: polySurface1
+    100088: polySurface10
+    100090: polySurface2
+    100092: polySurface3
+    100094: polySurface4
+    100096: polySurface5
+    100098: polySurface6
+    100100: polySurface7
+    100102: polySurface8
+    100104: polySurface9
+    100106: transform1
+    100108: transform11
+    100110: transform13
+    100112: transform15
+    100114: transform2
+    100116: transform20
+    100118: transform21
+    100120: transform27
+    100122: transform28
+    100124: transform29
+    100126: transform3
+    100128: transform30
+    100130: transform4
+    100132: transform5
+    100134: transform6
+    100136: transform7
+    100138: transform9
+    100140: //RootNode
+    400000: bevelPolygon1
+    400002: bevelPolygon17
+    400004: bevelPolygon17 1
+    400006: bevelPolygon18
+    400008: bevelPolygon18 1
+    400010: bevelPolygon19
+    400012: bevelPolygon19 1
+    400014: bevelPolygon2
+    400016: bevelPolygon20
+    400018: bevelPolygon20 1
+    400020: bevelPolygon21
+    400022: bevelPolygon21 1
+    400024: bevelPolygon22
+    400026: bevelPolygon22 1
+    400028: bevelPolygon23
+    400030: bevelPolygon23 1
+    400032: bevelPolygon24
+    400034: bevelPolygon24 1
+    400036: bevelPolygon25
+    400038: bevelPolygon25 1
+    400040: bevelPolygon26
+    400042: bevelPolygon26 1
+    400044: bevelPolygon27
+    400046: bevelPolygon27 1
+    400048: bevelPolygon28
+    400050: bevelPolygon28 1
+    400052: bevelPolygon29
+    400054: bevelPolygon29 1
+    400056: group1
+    400058: group2
+    400060: pCube10
+    400062: pCube11
+    400064: pCube3
+    400066: pCube4
+    400068: pCube5
+    400070: pCube6
+    400072: pCube7
+    400074: pCube8
+    400076: pCube9
+    400078: pCylinder1
+    400080: pCylinder2
+    400082: pCylinder3
+    400084: pCylinder4
+    400086: polySurface1
+    400088: polySurface10
+    400090: polySurface2
+    400092: polySurface3
+    400094: polySurface4
+    400096: polySurface5
+    400098: polySurface6
+    400100: polySurface7
+    400102: polySurface8
+    400104: polySurface9
+    400106: transform1
+    400108: transform11
+    400110: transform13
+    400112: transform15
+    400114: transform2
+    400116: transform20
+    400118: transform21
+    400120: transform27
+    400122: transform28
+    400124: transform29
+    400126: transform3
+    400128: transform30
+    400130: transform4
+    400132: transform5
+    400134: transform6
+    400136: transform7
+    400138: transform9
+    400140: //RootNode
+    2300000: bevelPolygon1
+    2300002: bevelPolygon17
+    2300004: bevelPolygon17 1
+    2300006: bevelPolygon18
+    2300008: bevelPolygon18 1
+    2300010: bevelPolygon19
+    2300012: bevelPolygon19 1
+    2300014: bevelPolygon2
+    2300016: bevelPolygon20
+    2300018: bevelPolygon20 1
+    2300020: bevelPolygon21
+    2300022: bevelPolygon21 1
+    2300024: bevelPolygon22
+    2300026: bevelPolygon22 1
+    2300028: bevelPolygon23
+    2300030: bevelPolygon23 1
+    2300032: bevelPolygon24
+    2300034: bevelPolygon24 1
+    2300036: bevelPolygon25
+    2300038: bevelPolygon25 1
+    2300040: bevelPolygon26
+    2300042: bevelPolygon26 1
+    2300044: bevelPolygon27
+    2300046: bevelPolygon27 1
+    2300048: bevelPolygon28
+    2300050: bevelPolygon28 1
+    2300052: bevelPolygon29
+    2300054: bevelPolygon29 1
+    2300056: pCube10
+    2300058: pCube6
+    2300060: pCube7
+    2300062: pCube8
+    2300064: pCube9
+    2300066: polySurface10
+    3300000: bevelPolygon1
+    3300002: bevelPolygon17
+    3300004: bevelPolygon17 1
+    3300006: bevelPolygon18
+    3300008: bevelPolygon18 1
+    3300010: bevelPolygon19
+    3300012: bevelPolygon19 1
+    3300014: bevelPolygon2
+    3300016: bevelPolygon20
+    3300018: bevelPolygon20 1
+    3300020: bevelPolygon21
+    3300022: bevelPolygon21 1
+    3300024: bevelPolygon22
+    3300026: bevelPolygon22 1
+    3300028: bevelPolygon23
+    3300030: bevelPolygon23 1
+    3300032: bevelPolygon24
+    3300034: bevelPolygon24 1
+    3300036: bevelPolygon25
+    3300038: bevelPolygon25 1
+    3300040: bevelPolygon26
+    3300042: bevelPolygon26 1
+    3300044: bevelPolygon27
+    3300046: bevelPolygon27 1
+    3300048: bevelPolygon28
+    3300050: bevelPolygon28 1
+    3300052: bevelPolygon29
+    3300054: bevelPolygon29 1
+    3300056: pCube10
+    3300058: pCube6
+    3300060: pCube7
+    3300062: pCube8
+    3300064: pCube9
+    3300066: polySurface10
+    4300000: bevelPolygon1
+    4300002: bevelPolygon2
+    4300004: bevelPolygon17
+    4300006: bevelPolygon18
+    4300008: bevelPolygon19
+    4300010: bevelPolygon20
+    4300012: bevelPolygon21
+    4300014: bevelPolygon22
+    4300016: bevelPolygon23
+    4300018: bevelPolygon24
+    4300020: bevelPolygon25
+    4300022: bevelPolygon26
+    4300024: bevelPolygon27
+    4300026: bevelPolygon28
+    4300028: bevelPolygon29
+    4300030: pCube6
+    4300032: bevelPolygon17
+    4300034: bevelPolygon18
+    4300036: bevelPolygon19
+    4300038: bevelPolygon20
+    4300040: bevelPolygon21
+    4300042: bevelPolygon22
+    4300044: bevelPolygon23
+    4300046: bevelPolygon24
+    4300048: bevelPolygon25
+    4300050: bevelPolygon26
+    4300052: bevelPolygon27
+    4300054: bevelPolygon28
+    4300056: bevelPolygon29
+    4300058: pCube7
+    4300060: pCube8
+    4300062: pCube9
+    4300064: pCube10
+    4300066: polySurface10
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .200000003
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

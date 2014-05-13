@@ -34,6 +34,7 @@ public class Sign : Activateable {
 
             if (Input.GetKeyDown("q")) {
                 GUIEnabled = false;
+				activated = false;
             }
 
         }
