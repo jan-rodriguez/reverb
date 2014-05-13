@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		Screen.showCursor = true;
 		Screen.lockCursor = false;
+		if (Application.loadedLevelName == "CityStage") {
+			SpawnPlayer();
+		}
 	}
 
 	public void OnGUI () {
@@ -35,8 +38,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void SpawnPlayer () {
+		Screen.showCursor = false;
+		Screen.lockCursor = true;
 		Object playerPrefab = Resources.Load ("Prefabs/FirstPersonController");
-		GameObject.Instantiate (playerPrefab, PLAYERSPAWN, Quaternion.identity);
+		Vector3 playerSpawnLocation = (Application.loadedLevelName == "CityStage") ? PLAYERCITYSPAWN : PLAYERSPAWN;
+		GameObject.Instantiate (playerPrefab, playerSpawnLocation, Quaternion.identity);
 		spawned = true;
 	}
 }
