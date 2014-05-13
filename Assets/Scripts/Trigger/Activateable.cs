@@ -46,7 +46,6 @@ public class Activateable : MonoBehaviour {
 		if (activationCooldownTimer <= 0f) {
 			// Activate!
 			activated = true;
-			Debug.Log ("Object activated.");
 			activationCooldownTimer = activationCooldown;
 			OnActivation();
 			return true;

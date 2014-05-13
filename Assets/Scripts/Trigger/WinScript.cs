@@ -7,7 +7,6 @@ public class WinScript : MonoBehaviour {
 	public int playersInside;
 
 	void Start() {
-		DontDestroyOnLoad (this);
 	}
 
 	void OnTriggerEnter (Collider collider) {
