@@ -23,7 +23,7 @@ public class Activator : MonoBehaviour {
 			Ray ray = referenceCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
 			RaycastHit hit;
 			
-			if (Physics.Raycast(ray, out hit)) {
+			if (Physics.Raycast(ray, out hit, 2.0f)) {
 				Activateable toActivate = hit.transform.GetComponent<Activateable>();
 				if (toActivate != null && toActivate.type == Activateable.TRIGGERTYPE.USE) {
 					toActivate.Activate();

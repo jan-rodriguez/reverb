@@ -22,8 +22,8 @@ public class MicSwap : MonoBehaviour {
 			}
 
 			Light playerLight = col.GetComponentInChildren<Light>();
-			playerLight.intensity = 1.0f;
-			playerLight.range = 50f;
+			playerLight.intensity = 0.75f;
+			playerLight.range = 25f;
 
 		}
 	}
